@@ -1,0 +1,4 @@
+import menuHandler
+
+menuHandler.startGame()
+
