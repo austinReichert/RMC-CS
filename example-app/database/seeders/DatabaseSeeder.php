@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(){
         $movies = Movie::factory()->count(3)->create();
 
-        $people = People::factory()->count(8)->create();
+        $people = People::factory()->count(10)->create();
 
         foreach ($movies as $movie){
             foreach ($people as $person) {
