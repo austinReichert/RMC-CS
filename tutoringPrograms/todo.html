@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <title>toDo list</title>
+    </head>
+    <body class="text-center bg-neutral-300/50 h-screen w-screen">
+        <div x-data="{
+            toDo: '',
+            toDoList: [],
+            addtoDoList(){
+                this.toDoList.push({
+                    name: this.toDo,
+                    done: false
+                });
+                this.toDo = ''
+            },
+            remove(index) {
+                this.toDoList = this.toDoList.filter((toDo, toDoIndex) => {
+                  return index !== toDoIndex
+                })
+            },
+            toggleDone(){
+                this.toDoList[index].done = !this.toDoList[index].done;}
+                }">
+
+            <div class="bg-neutral-400 content-evenly rounded-full w=100 h=100">
+                <p class="font-bold text-5xl p-3">ToDo List</p>
+                <input x-model="toDo" x-on:keydown.enter="addtoDoList" x-ref="toDoInput" placeholder="Add to do list" type="text" class="mx-auto">
+                <button x-on:click="addtoDoList" class="w-20 h-10 rounded-l-lg rounded-r-lg border-slate-200 bg-indigo-500 hover:bg-sky-700">Add to list</button>
+            </div>
+
+            <template x-for="(toDoList, index) in toDoList" :key="index">
+                <div class="bg-neutral-500/50 py-2 flex rounded">
+                    <div class="w-1/12">
+                        <input type="checkbox" x-on:change="toggleDone(index)" :checked="toDo.done">
+                    </div>
+                    <div class="w-10/12">
+                        <p x-text="toDo.name" ></p>
+                        </div>
+                    <div>
+                        <button x-on:click="remove(index)">x</button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </body>
+</html>
