@@ -10,3 +10,11 @@ def unwrap(array):
 
 robert = Player()
 ed = Player()
+
+unwrap(robert.getStats())
+unwrap(ed.getStats())
+
+abilities.cuttingStrike(robert, ed)
+
+unwrap(robert.getStats())
+unwrap(ed.getStats())

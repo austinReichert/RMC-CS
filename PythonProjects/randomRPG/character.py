@@ -9,7 +9,7 @@ class Character(object):
         self._attack = self.randomize(3, 10)
         self._defence = self.randomize(1, 6)
         self._speed = self.randomize(1, 5)
-        self._maxHP = self.randomize(5, 30)
+        self._maxHP = self.randomize(5, 25)
         self._currentHP = self._maxHP
         self._maxMP = self.randomize(5, 20)
         self._currentMP = self._maxMP
@@ -23,9 +23,9 @@ class Character(object):
         self.attack = (self.attack + self.randomize(1, 4)) + scalingAmount
         self.defence = (self.defence + self.randomize(1, 4)) + scalingAmount
         self.speed = (self.speed + self.randomize(1, 4)) + scalingAmount
-        self.maxHP = (self.maxHP + self.randomize(1, 8)) + scalingAmount
+        self.maxHP = (self.maxHP + self.randomize(2, 10)) + scalingAmount
         self.currentHP = self.maxHP
-        self.maxMP = (self.maxMP + self.randomize(1, 8)) + scalingAmount
+        self.maxMP = (self.maxMP + self.randomize(1, 4)) + scalingAmount
         self.currentMP = self.maxMP
 
     def getStats(self):

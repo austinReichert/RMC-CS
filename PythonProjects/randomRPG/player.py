@@ -4,7 +4,9 @@ from character import Character
 
 
 class Player(Character):
-    _moveOptions = ["simpleStrike", "meditate", "armorShred", "heal", "manaSiphon", "luckyStrike", "sacrificialStrike", "defensiveForm", "quickAttack", "healingStrike"]
+    _moveOptions = ["simpleStrike", "meditate", "armorShred", "heal", "manaSiphon", "luckyStrike", "sacrificialStrike",
+                    "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
+                    "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike"]
 
     def __init__(self, isHuman=True):
         super().__init__()
