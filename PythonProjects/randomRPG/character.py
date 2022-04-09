@@ -6,8 +6,8 @@ class Character(object):
         self._name = ""
         self._level = 1
         self._luck = self.randomize(1, 10)
-        self._attack = self.randomize(1, 10)
-        self._defence = self.randomize(1, 10)
+        self._attack = self.randomize(3, 10)
+        self._defence = self.randomize(1, 6)
         self._speed = self.randomize(1, 5)
         self._maxHP = self.randomize(5, 30)
         self._currentHP = self._maxHP
@@ -19,13 +19,13 @@ class Character(object):
 
     def levelUp(self, scalingAmount=0):
         self.level = self.level + 1
-        self.luck = (self.luck + 1) + scalingAmount
-        self.attack = (self.attack + 1) + scalingAmount
-        self.defence = (self.defence + 1) + scalingAmount
-        self.speed = (self.speed + 1) + scalingAmount
-        self.maxHP = (self.maxHP + 1) + scalingAmount
+        self.luck = (self.luck + self.randomize(1, 4)) + scalingAmount
+        self.attack = (self.attack + self.randomize(1, 4)) + scalingAmount
+        self.defence = (self.defence + self.randomize(1, 4)) + scalingAmount
+        self.speed = (self.speed + self.randomize(1, 4)) + scalingAmount
+        self.maxHP = (self.maxHP + self.randomize(1, 8)) + scalingAmount
         self.currentHP = self.maxHP
-        self.maxMP = (self.maxMP + 1) + scalingAmount
+        self.maxMP = (self.maxMP + self.randomize(1, 8)) + scalingAmount
         self.currentMP = self.maxMP
 
     def getStats(self):

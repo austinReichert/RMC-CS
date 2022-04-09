@@ -1,25 +1,25 @@
 import pygame
 from colors import Color
-from enum import Enum
+import enum
 import gameHandler
 
 
 # game states//menus
 
-class Menus(Enum):
-    gameInit = 0,
-    playGame = 1,
-    playerStats = 2,
-    playerMoves = 3,
-    playerLevelUp = 3,
-    gameOver = 4
+class Menus(enum.Enum):
+    GAMEINIT = 0,
+    PLAYGAME = 1,
+    PLAYERSTATS = 2,
+    PLAYERMOVES = 3,
+    PLAYERLEVELUP = 3,
+    GAMEOVER = 4
 
 
 # game functions
 
 def startGame():
     window, clock = initWindow()
-    state = Menus.gameInit
+    state = Menus.GAMEINIT
     gameLoop(window=window, clock=clock, state=state)
 
 
@@ -39,17 +39,17 @@ def gameLoop(window, clock, state):
 
 
 def eventDirectory(window, state):
-    if state == Menus.gameInit:
+    if state == Menus.GAMEINIT:
         pass
-    elif state == Menus.playGame:
+    elif state == Menus.PLAYGAME:
         pass
-    elif state == Menus.playerStats:
+    elif state == Menus.PLAYERSTATS:
         pass
-    elif state == Menus.playerMoves:
+    elif state == Menus.PLAYERMOVES:
         pass
-    elif state == Menus.playerLevelUp:
+    elif state == Menus.PLAYERLEVELUP:
         pass
-    elif state == Menus.gameOver:
+    elif state == Menus.GAMEOVER:
         pass
 
 
