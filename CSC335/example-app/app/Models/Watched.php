@@ -9,6 +9,7 @@ class Watched extends Model
 {
     public $timestamps = false;
     protected $table = 'watched';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'people_id',
         'movie_id',

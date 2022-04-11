@@ -23,3 +23,7 @@ Route::get('/', function () {
     $movies = Movie::all();
     return view('welcome', ['people' => $people, 'movies' => $movies, 'allWatched' => $allWatched]);
 });
+
+Route::resource('person', \App\Http\Controllers\personController::class);
+Route::resource('movie', \App\Http\Controllers\movieController::class);
+Route::resource('watched', \App\Http\Controllers\watchedController::class);

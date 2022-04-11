@@ -30,7 +30,7 @@
         h2, label {
             text-align: center;
         }
-        form {
+        form, a {
             text-align: center;
             margin-left: auto;
             margin-right: auto;
@@ -38,18 +38,6 @@
 
     </style>
     <body>
-
-    <form method="GET" action="">
-        @csrf
-        <label>Add ???&#x2192;</label><input type="text"> <input type="submit" value="Submit">
-    </form>
-    <br>
-
-    <form method="GET" action="">
-        @csrf
-        <label>Remove ???&#x2192;</label><input type="text"> <input type="submit" value="Submit">
-    </form>
-    <br>
 
     <h2>Total Movies: {{ $movies->count() }}</h2>
     <table>
@@ -66,6 +54,11 @@
             <td>{{ $movie->rating }}</td>
         </tr>
         @endforeach
+        <tr>
+            <td colspan="3">
+                <a href="{{route('movie.index')}}">Go to movie index</a>
+            </td>
+        </tr>
     </table>
 
     <br>
@@ -82,8 +75,12 @@
                 <td>{{ $person->birthdate }}</td>
             </tr>
             @endforeach
+            <tr>
+                <td colspan="2">
+                    <a href="{{route('person.index')}}">Go to person index</a>
+                </td>
+            </tr>
     </table>
-
     <br>
 
     <h2>Total Watched Records: {{$allWatched->count()}}</h2>
@@ -100,7 +97,11 @@
             <td>{{ $watched->stars }}</td>
         </tr>
         @endforeach
-
+        <tr>
+            <td colspan="3">
+                <a href="{{route('watched.index')}}">Go to watched records index</a>
+            </td>
+        </tr>
     </table>
 
     </body>

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f356f195-e543-4397-bb96-020c899d8097" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/RMC-CS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RMC-CS.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/example-app" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -62,6 +61,8 @@
       <updated>1649430427270</updated>
       <workItem from="1649430431656" duration="56000" />
       <workItem from="1649431182866" duration="18490000" />
+      <workItem from="1649684065317" duration="756000" />
+      <workItem from="1649686216612" duration="136000" />
     </task>
     <servers />
   </component>

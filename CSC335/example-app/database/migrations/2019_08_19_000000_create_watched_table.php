@@ -14,12 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('watched', function (Blueprint $table) {
+            $table->id();
             $table->integer('people_id');
             $table->integer('movie_id');
             $table->integer('stars');
             $table->string('comments');
-            $table->foreign('people_id')->references('id')->on('people');
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('people_id')->references('id')->on('people')->cascadeOnDelete();
+            $table->foreign('movie_id')->references('id')->on('movies')->cascadeOnDelete();
         });
     }
 
