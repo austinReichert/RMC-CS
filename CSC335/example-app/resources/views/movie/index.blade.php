@@ -38,9 +38,17 @@
         border: none;
         background: none;
     }
+    tr:last-child{
+        background: blanchedalmond;
+        font-size: 20px;
+    }
+    a {
+        text-decoration: none;
+    }
 </style>
 
 <h1>Movies Index</h1>
+<h2><a href="\"><i>Return to main page</i></a></h2>
 <h2>Total Movies: {{ $movies->count() }}</h2>
     <table>
         <tr>

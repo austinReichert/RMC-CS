@@ -86,6 +86,7 @@ class movieController extends Controller
         $movie->releaseyear = $validated['releaseyear'];
         $movie->rating = $validated['rating'];
         $movie->save();
+        return redirect(url(route('movie.index')));
     }
 
     /**

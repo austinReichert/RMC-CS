@@ -82,6 +82,7 @@ class personController extends Controller
         $person->name = $validated['name'];
         $person->birthdate = $validated['birthdate'];
         $person->save();
+        return redirect(url(route('person.index')));
     }
 
     /**

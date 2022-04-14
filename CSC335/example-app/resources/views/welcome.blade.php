@@ -27,13 +27,18 @@
         tr:nth-child(odd):not(:first-child){
             background: cornsilk;
         }
+        tr:last-child{
+            background: blanchedalmond;
+            font-size: 30px;
+        }
         h2, label {
             text-align: center;
         }
-        form, a {
+        a {
             text-align: center;
             margin-left: auto;
             margin-right: auto;
+            text-decoration: none;
         }
 
     </style>

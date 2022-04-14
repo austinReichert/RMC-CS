@@ -67,8 +67,7 @@ class watchedController extends Controller
      * @param  \App\Models\Watched  $watched
      * @return Response
      */
-    public function edit($people_id, $movie_id){
-        $watched = Watched::where('people_id', $people_id)->where('movie_id', $movie_id)->first();
+    public function edit(Watched $watched){
         return view('watched.edit',['watched' => $watched]);
     }
 
@@ -86,11 +85,12 @@ class watchedController extends Controller
             'stars' => 'required|max:1',
             'comments' => 'required|max:255',
         ]);
-        $watched->person_id = $validated['person_id'];
+        $watched->people_id = $validated['people_id'];
         $watched->movie_id = $validated['movie_id'];
         $watched->stars = $validated['stars'];
         $watched->comments = $validated['comments'];
         $watched->save();
+        return redirect(url(route('watched.index')));
     }
 
     /**

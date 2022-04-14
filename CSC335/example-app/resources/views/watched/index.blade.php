@@ -38,16 +38,24 @@
         border: none;
         background: none;
     }
+    tr:last-child{
+        background: blanchedalmond;
+        font-size: 20px;
+    }
+    a {
+        text-decoration: none;
+    }
 </style>
 
 <h1>Watched Records Index</h1>
-<br>
+<h2><a href="\"><i>Return to main page</i></a></h2>
 <h2>Total Watched Records: {{$allWatched->count()}}</h2>
 <table>
     <tr>
         <th><h3>Person's Full Name</h3></th>
         <th><h3>Movie They Watched</h3></th>
         <th><h3>Person's Stars</h3></th>
+        <th><h3>Person's Review</h3></th>
         <th><h3>Delete Watched Record</h3></th>
         <th><h3>Edit Watched Record</h3></th>
     </tr>
@@ -56,6 +64,7 @@
         <td>{{ $watched->person->name }}</td>
         <td>{{ $watched->movie->title }}</td>
         <td>{{ $watched->stars }}</td>
+        <td>{{$watched->comments}}</td>
         <td>
              <form action="{{ route('watched.destroy', ['watched' => $watched->id]) }}" method="post">
                 @csrf
@@ -70,6 +79,6 @@
     @endforeach
 
     <tr>
-        <td colspan="5"><h2><a href="{{ route('watched.create') }}">Create a new watched record</a></h2></td>
+        <td colspan="6"><h2><a href="{{ route('watched.create') }}">Create a new watched record</a></h2></td>
     </tr>
 </table>

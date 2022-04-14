@@ -38,11 +38,18 @@
         border: none;
         background: none;
     }
+    tr:last-child {
+        background: blanchedalmond;
+        font-size: 20px;
+    }
+    a {
+        text-decoration: none;
+    }
 </style>
 
 <h1>People Index</h1>
-<br>
- <h2>Total People: {{ $people->count() }}</h2>
+<h2><a href="\"><i>Return to main page</i></a></h2>
+<h2>Total People: {{ $people->count() }}</h2>
     <table>
         <tr>
             <th><h3>Person's Full Name</h3></th>
