@@ -31,6 +31,27 @@
     <p> Enter how many stars they voted: <input name="stars" />
     <p> Enter their comment: <input name="comments" />
     <button type="submit">Save</button>
+
+    @error('people_id')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct person id!</b></h3>
+    @enderror
+    @error('movie_id')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct movie id!</b></h3>
+    @enderror
+    @error('stars')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct amount of stars!</b></h3>
+    @enderror
+    @error('comments')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct sized comment!</b></h3>
+    @enderror
 </form>
 </body>
 </html>

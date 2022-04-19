@@ -39,7 +39,7 @@ class movieController extends Controller
        $validated = $request->validate([
         'title' => 'required|max:255',
         'releaseyear' => 'required|max:4',
-        'rating' => 'required|max:12',
+        'rating' => 'required|max:6',
     ]);
     Movie::create([
         'title' => $validated['title'],

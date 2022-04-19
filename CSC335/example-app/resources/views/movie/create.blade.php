@@ -30,6 +30,22 @@
     <p>Enter the year the movie was released: <input name="releaseyear"/>
     <p>Enter the movies rating: <input name="rating"/>
     <button type="submit">Save</button>
+
+    @error('title')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct title!</b></h3>
+    @enderror
+    @error('releaseyear')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct release year!</b></h3>
+    @enderror
+    @error('rating')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct rating!</b></h3>
+    @enderror
 </form>
 </body>
 </html>

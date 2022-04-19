@@ -29,6 +29,17 @@
     Enter persons full name: <input name="name" />
     <p>Enter when they were born: <input type="date" name="birthdate" />
     <button type="submit">Save</button>
+
+    @error('name')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct name!</b></h3>
+    @enderror
+    @error('birthdate')
+        <br>
+        <h1><u>ERROR</u></h1>
+            <h3><b>Enter a correct birthdate!</b></h3>
+    @enderror
 </form>
 </body>
 </html>
