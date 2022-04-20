@@ -28,7 +28,14 @@
     @csrf
     Enter the movies title: <input name="title" />
     <p>Enter the year the movie was released: <input name="releaseyear"/>
-    <p>Enter the movies rating: <input name="rating"/>
+    <p>Enter the movies rating:
+        <select name="rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+            <option value="NR">NR</option>
+        </select>
     <button type="submit">Save</button>
 
     @error('title')

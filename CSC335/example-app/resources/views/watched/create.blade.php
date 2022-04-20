@@ -26,27 +26,28 @@
 <br>
 <form method="post" action="{{ route('watched.store') }}">
     @csrf
-    <p> Enter new people id: <input name="people_id"/>
-    <p> Enter new movie id: <input name="movie_id"/>
-    <p> Enter how many stars they voted: <input name="stars" />
-    <p> Enter their comment: <input name="comments" />
+    <p> Add a person:
+        <select name="people_id">
+            @foreach($people as $person)
+                <option value="{{ $person->id }}">{{ $person->name }}</option>
+            @endforeach
+        </select>
+    <p> Add a movie:
+        <select name="movie_id">
+            @foreach($movies as $movie)
+                <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+            @endforeach
+        </select>
+    <p> Enter stars voted: <select name="stars">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+    </select>
+    <p> Enter their comment: <input name="comments"/>
     <button type="submit">Save</button>
 
-    @error('people_id')
-        <br>
-        <h1><u>ERROR</u></h1>
-            <h3><b>Enter a correct person id!</b></h3>
-    @enderror
-    @error('movie_id')
-        <br>
-        <h1><u>ERROR</u></h1>
-            <h3><b>Enter a correct movie id!</b></h3>
-    @enderror
-    @error('stars')
-        <br>
-        <h1><u>ERROR</u></h1>
-            <h3><b>Enter a correct amount of stars!</b></h3>
-    @enderror
     @error('comments')
         <br>
         <h1><u>ERROR</u></h1>

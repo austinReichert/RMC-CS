@@ -37,6 +37,7 @@
     button {
         border: none;
         background: none;
+        cursor: pointer;
     }
     tr:last-child{
         background: blanchedalmond;

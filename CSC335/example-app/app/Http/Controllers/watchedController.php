@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\Watched;
+use App\Models\People;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -26,7 +28,7 @@ class watchedController extends Controller
      * @return Response
      */
     public function create(){
-        return view('watched.create');
+        return view('watched.create', ['movies'=>Movie::all(), 'people'=>People::all()]);
     }
 
     /**
@@ -68,7 +70,7 @@ class watchedController extends Controller
      * @return Response
      */
     public function edit(Watched $watched){
-        return view('watched.edit',['watched' => $watched]);
+        return view('watched.edit',['watched' => $watched], ['movies'=>Movie::all(), 'people'=>People::all()]);
     }
 
     /**

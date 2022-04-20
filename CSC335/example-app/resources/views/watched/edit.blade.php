@@ -27,27 +27,28 @@
 <form method="post" action="{{ route('watched.update', ['watched'=>$watched->id]) }}">
     @csrf
     @method('put')
-    <p> Enter the persons id <input name="people_id" value="{{$watched->people_id}}"/>
-    <p> Enter the movies id <input name="movie_id" value="{{$watched->movie_id}}"/>
-    <p> Enter how many stars they voted: <input name="stars" value="{{$watched->stars}}"/>
+     <p> Add a person to edit:
+        <select name="people_id">
+            @foreach($people as $person)
+                <option value="{{ $person->id }}" {{ $watched->people_id === $person->id ? 'selected':''}}>{{ $person->name }}</option>
+            @endforeach
+        </select>
+    <p> Add a movie to edit:
+        <select name="movie_id">
+            @foreach($movies as $movie)
+                <option value="{{ $movie->id }}" {{ $watched->movie_id === $movie->id ? 'selected':''}}>{{ $movie->title }}</option>
+            @endforeach
+        </select>
+    <p> Enter stars voted: <select name="stars">
+            <option value="1" {{$watched->stars === 1 ? 'selected':''}}>1</option>
+            <option value="2" {{$watched->stars === 2 ? 'selected':''}}>2</option>
+            <option value="3" {{$watched->stars === 3 ? 'selected':''}}>3</option>
+            <option value="4" {{$watched->stars === 4 ? 'selected':''}}>4</option>
+            <option value="5" {{$watched->stars === 5 ? 'selected':''}}>5</option>
+    </select>
     <p> Enter their comment: <input name="comments" value="{{$watched->comments}}"/>
     <button type="submit">Save</button>
 
-    @error('people_id')
-        <br>
-        <h1><u>ERROR</u></h1>
-            <h3><b>Enter a correct person id!</b></h3>
-    @enderror
-    @error('movie_id')
-        <br>
-        <h1><u>ERROR</u></h1>
-            <h3><b>Enter a correct movie id!</b></h3>
-    @enderror
-    @error('stars')
-        <br>
-        <h1><u>ERROR</u></h1>
-            <h3><b>Enter a correct amount of stars!</b></h3>
-    @enderror
     @error('comments')
         <br>
         <h1><u>ERROR</u></h1>

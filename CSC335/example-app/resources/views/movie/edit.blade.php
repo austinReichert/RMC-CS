@@ -29,7 +29,14 @@
     @method('put')
     Enter the movies title: <input name="title" value="{{$movie->title}}" />
     <p>Enter when the movie was released: <input name="releaseyear" value="{{$movie->releaseyear}}"/>
-    <p>Enter the movies rating: <input name="rating" value="{{$movie->rating}}"/>
+    <p>Enter the movies rating:
+        <select name="rating">
+            <option value="G" {{$movie->rating === "G" ? 'selected':''}}>G</option>
+            <option value="PG" {{$movie->rating === "PG" ? 'selected':''}}>PG</option>
+            <option value="PG-13" {{$movie->rating === "PG-13" ? 'selected':''}}>PG-13</option>
+            <option value="R" {{$movie->rating === "R" ? 'selected':''}}>R</option>
+            <option value="NR" {{$movie->rating === "NR" ? 'selected':''}}>NR</option>
+    </select>
     <button type="submit">Save</button>
 
     @error('title')
