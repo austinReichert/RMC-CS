@@ -1,1 +1,1 @@
-SC258//CSC499 is embedded systems, a class revolving around coding and creation of projects based off the Raspberry Pi Pico using Micropython and Circuitpython.
+CSC344 is a class focused on coding in C and Assembly. Keep in mind I wrote these so they may not be completely functional. 
