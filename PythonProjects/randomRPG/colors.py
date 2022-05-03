@@ -9,7 +9,8 @@ class Color:
     PURPLE = (255, 0, 255)
     CYAN = (0, 255, 255)
     TEAL = (125, 170, 250)
+    LIGHTBLUE = (173,216,230)
     # color RGBS
 
-    COLORLIST = (BLACK, RED, PURPLE, BLUE, GREEN, YELLOW, CYAN, WHITE, TEAL)
+    COLORLIST = (BLACK, RED, PURPLE, BLUE, GREEN, YELLOW, CYAN, WHITE, TEAL, LIGHTBLUE)
     # list of colors used to randomize colors

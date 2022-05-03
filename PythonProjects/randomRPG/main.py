@@ -1,5 +1,7 @@
-from player import Player
 import abilities
+import menuHandler
+from player import Player
+from abilities import manaCosts
 
 
 def unwrap(array):
@@ -8,5 +10,4 @@ def unwrap(array):
                                  array[8]))
 
 
-robert = Player()
-print(robert.moveSet)
+menuHandler.startGame()
