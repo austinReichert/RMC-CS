@@ -11,7 +11,7 @@ class Character(object):
         self._speed = self.randomize(1, 5)
         self._maxHP = self.randomize(5, 25)
         self._currentHP = self._maxHP
-        self._maxMP = self.randomize(5, 20)
+        self._maxMP = self.randomize(6, 20)
         self._currentMP = self._maxMP
 
     def randomize(self, minNum, maxNum):

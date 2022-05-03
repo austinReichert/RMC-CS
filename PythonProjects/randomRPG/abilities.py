@@ -6,9 +6,9 @@ class abilityDescriptions(enum.Enum):
     simpleStrike = "Strikes enemy based off attack and enemy defence (Attack - Defence)",
     meditate = "Regens a random amount of mana (1 - 4 + 10% Max Mana)",
     armorShred = "Low chance (10% Luck + 15%) to shred an enemy's defence a random amount (1 + 5% Luck)",
-    heal = "Regens a random amount of mana (1 - 4 + 10% Max HP)",
+    heal = "Regens a random amount of health (1 - 4 + 10% Max HP)",
     manaSiphon = "Strikes enemy based on Mana and regens mana a random amount (1 - 1 + 20% Current Mana)",
-    luckyStrike = "Low chance (5 + 30% Luck) to strike for extra damage (50% Luck + 100% Attack)",
+    luckyStrike = "Low chance (5% + 30% Luck) to strike for extra damage (50% Luck + 100% Attack)",
     sacrificialStrike = "Strikes enemy for extra (140% attack) after taking recoil (65% attack)",
     defensiveForm = "Low chance (35% Defence + 90% Luck) to gain a random amount of defence (1-3)",
     quickAttack = "Strikes enemy, dealing extra damage if enemy speed is lower (25% Attack + 100% Speed)",
@@ -20,7 +20,8 @@ class abilityDescriptions(enum.Enum):
     heavyStrike = "Strikes enemy based off defence (Defence * 2)",
     ultimateStrike = "Strikes enemy based off every stat (60% Every stat total)",
     bigStrike = "Chance (16.5% + 100% Luck) to strike enemy for extra damage (145% Attack)",
-    cuttingStrike = "Strikes enemy based off their current Health (1 - 2 + 30% Current HP)"
+    cuttingStrike = "Strikes enemy based off their current Health (1 - 2 + 30% Current HP)",
+    chanceStrike = "Chance (30% + 100% Luck) to strike enemy for extra damage. Misses heal the opponent (110% Attack)"
 
     # x = "".join(abilities.abilityDescriptions.armorShred.value)
 
@@ -37,18 +38,19 @@ class manaCosts(enum.IntEnum):
     quickAttack = 0,
     healingStrike = 4,
     halfSlash = 4,
-    healthSteal = 3,
+    healthSteal = 2,
     armorConversion = 3,
     luckConversion = 3,
     heavyStrike = 1,
-    ultimateStrike = 7,
+    ultimateStrike = 6,
     bigStrike = 0,
-    cuttingStrike = 2
+    cuttingStrike = 2,
+    chanceStrike = 0
 
 
 def simpleStrike(user, target):
     if _spendMana(user, manaCosts.simpleStrike):
-        _damage(target, (user.attack - target.defence))
+        _spendHealth(target, (user.attack - target.defence))
 
 
 def meditate(user):
@@ -63,9 +65,9 @@ def armorShred(user, target):
             amount = round(random.randint(0, 1) + round(user.luck * 0.05))
             if target.defence >= amount:
                 target.defence = target.defence - amount
-                _damage(target, amount)
+                _spendHealth(target, amount)
             else:
-                _damage(target, amount)
+                _spendHealth(target, amount)
 
 
 def heal(user):
@@ -77,20 +79,20 @@ def heal(user):
 def manaSiphon(user, target):
     if _spendMana(user, manaCosts.manaSiphon):
         amount = (random.randint(1, 4 + (round(user.currentMP * 0.2)))) - _calculateDefense(target)
-        _damage(target, amount)
+        _spendHealth(target, amount)
         _gainMana(user, amount)
 
 
 def luckyStrike(user, target):
     if _spendMana(user, manaCosts.luckyStrike):
         if round(user.luck * 0.3) + 5 > random.randint(0, 100):
-            _damage(target, round((user.luck * 0.5)) + user.attack - _calculateDefense(target))
+            _spendHealth(target, round((user.luck * 0.5)) + user.attack - _calculateDefense(target))
 
 
 def sacrificialStrike(user, target):
     if _spendMana(user, manaCosts.sacrificialStrike):
-        _damage(user, round((user.attack * 0.65) - _calculateDefense(user)))
-        _damage(target, round((user.attack * 1.4) - _calculateDefense(target)))
+        _spendHealth(user, round((user.attack * 0.65) - _calculateDefense(user)))
+        _spendHealth(target, round((user.attack * 1.4) - _calculateDefense(target)))
 
 
 def defensiveForm(user):
@@ -103,15 +105,15 @@ def quickAttack(user, target):
     if _spendMana(user, manaCosts.quickAttack):
         if user.speed > target.speed:
             amount = round((user.speed - target.speed) * 1.5 + round(user.attack * 0.25)) - _calculateDefense(target)
-            _damage(target, amount)
+            _spendHealth(target, amount)
         else:
-            _damage(target, round(user.attack * 0.5) + 1 - _calculateDefense(target))
+            _spendHealth(target, round(user.attack * 0.5) + 1 - _calculateDefense(target))
 
 
 def healingStrike(user, target):
     if _spendMana(user, manaCosts.healingStrike):
         amount = user.attack - _calculateDefense(target)
-        _damage(target, amount)
+        _spendHealth(target, amount)
         _gainHealth(user, amount)
 
 
@@ -119,7 +121,7 @@ def halfSlash(user, target):
     if _spendMana(user, manaCosts.halfSlash):
         if round(user.attack * 0.7) + 10 > _randomChance():
             amount = (round(target.currentHP * 0.5) + round(user.attack * 0.2)) - _calculateDefense(target)
-            _damage(target, amount)
+            _spendHealth(target, amount)
 
 
 def healthSteal(user, target):
@@ -132,7 +134,7 @@ def healthSteal(user, target):
                 if target.maxHP < target.currentHP:
                     target.currentHP = target.maxHP
             else:
-                _damage(target, amount)
+                _spendHealth(target, amount)
 
 
 def armorConversion(user):
@@ -154,32 +156,41 @@ def luckConversion(user):
 def heavyStrike(user, target):
     if _spendMana(user, manaCosts.heavyStrike):
         amount = round(user.defence * 2) - _calculateDefense(target)
-        _damage(target, amount)
+        _spendHealth(target, amount)
 
 
 def ultimateStrike(user, target):
     if _spendMana(user, manaCosts.ultimateStrike):
         amount = round((user.level + user.luck + user.attack + user.defence + user.speed + user.currentHP
                         + user.currentMP) * 0.6) - _calculateDefense(target)
-        _damage(target, amount)
+        _spendHealth(target, amount)
 
 
 def bigStrike(user, target):
     if _spendMana(user, manaCosts.bigStrike):
         if round(16.5 + user.luck) > _randomChance():
             amount = round(user.attack * 1.45) - _calculateDefense(target)
-            _damage(target, amount)
+            _spendHealth(target, amount)
 
 
 def cuttingStrike(user, target):
     if _spendMana(user, manaCosts.cuttingStrike):
         amount = round(random.uniform(1, 2 + (target.currentHP * 0.3)))
         print(amount)
-        _damage(target, amount)
+        _spendHealth(target, amount)
+
+
+def chanceStrike(user, target):
+    if _spendMana(user, manaCosts.chanceStrike):
+        amount = round(user.attack * 1.1) - _calculateDefense(target)
+        if (30 + user.luck) > _randomChance():
+            _spendHealth(target, amount)
+        else:
+            _gainHealth(target, amount)
 
 
 # functions used for upper functions
-def _damage(target, amount):
+def _spendHealth(target, amount):
     if amount > 0:
         if 0 >= (target.currentHP - amount):
             target.currentHP = 0
