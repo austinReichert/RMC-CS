@@ -1,5 +1,6 @@
 import abilities
-import menuHandler
+import game
+import pygame
 from player import Player
 from abilities import manaCosts
 
@@ -10,4 +11,6 @@ def unwrap(array):
                                  array[8]))
 
 
-menuHandler.startGame()
+pygame.init()
+game = game.Game()
+game.gameLoop()
