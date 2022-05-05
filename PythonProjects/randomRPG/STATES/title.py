@@ -38,6 +38,9 @@ class Title(State):
                     self.updateScale(-1)
             if event.key == pygame.K_2:
                 self.updateScale(1)
+            if event.key == pygame.K_0:
+                if self.scale < 10000:
+                    self.updateScale(50)
 
     def draw(self, window):
         window.fill(Color.LIGHTBLUE)

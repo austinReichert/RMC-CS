@@ -51,5 +51,5 @@ class Moves(State):
         self.data = data
 
     def showMoveData(self, window, x, y, color, move, mainFont, secondFont, number):
-        _displayText(window, x, y, color, "{}: {}(MP:{})".format(number, move, abilities.manaCosts.costs[str(move)]), mainFont)
+        _displayText(window, x, y, color, "{}: {}(MP: {})".format(number, move, abilities.manaCosts.costs[str(move)]), mainFont)
         _displayText(window, x, (y + 40), color, "{}".format(abilities.abilityDescriptions.descriptions[str(move)]), secondFont)

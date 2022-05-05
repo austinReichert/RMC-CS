@@ -17,16 +17,20 @@ class Character(object):
 
     def levelUp(self):
         self.level = self.level + 1
-        self.luck = (self.luck + self.randomize(1, 4)) + self.scale
-        self.attack = (self.attack + self.randomize(1, 4)) + self.scale
-        self.defence = (self.defence + self.randomize(1, 4)) + self.scale
-        self.speed = (self.speed + self.randomize(1, 4)) + self.scale
-        self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.scale
+        self.luck = (self.luck + self.randomize(1, 4)) + self.randomize(0, self.scale)
+        self.attack = (self.attack + self.randomize(1, 4)) + self.randomize(0, self.scale)
+        self.defence = (self.defence + self.randomize(1, 4)) + self.randomize(0, self.scale)
+        self.speed = (self.speed + self.randomize(1, 4)) + self.randomize(0, self.scale)
+        self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.randomize(0, self.scale)
         self.currentHP = self.maxHP
-        self.maxMP = (self.maxMP + self.randomize(1, 4)) + self.scale
+        self.maxMP = (self.maxMP + self.randomize(1, 4)) + self.randomize(0, self.scale)
         self.currentMP = self.maxMP
 
     def randomize(self, minNum, maxNum):
+        if maxNum == 0:
+            return 0
+        elif maxNum <= minNum:
+            return minNum
         return random.randrange(minNum, maxNum)
 
     def getStats(self):
