@@ -8,13 +8,19 @@ class Player(Character):
                     "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
                     "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike"]
 
-    def __init__(self, isHuman=True):
+    def __init__(self, name, isHuman=True):
         super().__init__()
         self._isHuman = isHuman
-        self.moveSet = self.randomizeMoveset()
+        self.name = name
+        self._moveSet = self.randomizeMoveset()
 
     def randomizeMoveset(self):
         moves = []
-        for i in range(4):
-            moves.append(self._moveOptions[random.randint(0, 18)])
+        while len(moves) < 4:
+            toAdd = self._moveOptions[random.randint(0, 18)]
+            if toAdd not in moves:
+                moves.append(toAdd)
         return moves
+
+    def getMoves(self):
+        return self._moveSet

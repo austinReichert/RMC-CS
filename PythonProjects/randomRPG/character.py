@@ -4,29 +4,30 @@ import random
 class Character(object):
     def __init__(self):
         self._name = ""
-        self._level = 1
-        self._luck = self.randomize(1, 10)
-        self._attack = self.randomize(3, 10)
-        self._defence = self.randomize(1, 6)
+        self._level = 0
+        self._luck = self.randomize(1, 6)
+        self._attack = self.randomize(3, 6)
+        self._defence = self.randomize(1, 3)
         self._speed = self.randomize(1, 5)
-        self._maxHP = self.randomize(5, 25)
+        self._maxHP = self.randomize(5, 15)
         self._currentHP = self._maxHP
-        self._maxMP = self.randomize(6, 20)
+        self._maxMP = self.randomize(6, 10)
         self._currentMP = self._maxMP
+        self._scale = 0
+
+    def levelUp(self):
+        self.level = self.level + 1
+        self.luck = (self.luck + self.randomize(1, 4)) + self.scale
+        self.attack = (self.attack + self.randomize(1, 4)) + self.scale
+        self.defence = (self.defence + self.randomize(1, 4)) + self.scale
+        self.speed = (self.speed + self.randomize(1, 4)) + self.scale
+        self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.scale
+        self.currentHP = self.maxHP
+        self.maxMP = (self.maxMP + self.randomize(1, 4)) + self.scale
+        self.currentMP = self.maxMP
 
     def randomize(self, minNum, maxNum):
         return random.randrange(minNum, maxNum)
-
-    def levelUp(self, scalingAmount=0):
-        self.level = self.level + 1
-        self.luck = (self.luck + self.randomize(1, 4)) + scalingAmount
-        self.attack = (self.attack + self.randomize(1, 4)) + scalingAmount
-        self.defence = (self.defence + self.randomize(1, 4)) + scalingAmount
-        self.speed = (self.speed + self.randomize(1, 4)) + scalingAmount
-        self.maxHP = (self.maxHP + self.randomize(2, 10)) + scalingAmount
-        self.currentHP = self.maxHP
-        self.maxMP = (self.maxMP + self.randomize(1, 4)) + scalingAmount
-        self.currentMP = self.maxMP
 
     def getStats(self):
         return [
@@ -119,3 +120,11 @@ class Character(object):
     @currentMP.setter
     def currentMP(self, newAmount):
         self._currentMP = newAmount
+
+    @property
+    def scale(self):
+        return self._scale
+
+    @scale.setter
+    def scale(self, newAmount):
+        self._scale = newAmount

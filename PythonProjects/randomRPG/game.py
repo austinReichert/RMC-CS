@@ -1,5 +1,6 @@
 import pygame
-from STATES import gameStates
+from STATES import title, game, moves, stats, attack, levelup, gameover
+import player
 
 
 class Game(object):
@@ -7,14 +8,17 @@ class Game(object):
         self.window = pygame.display.set_mode((640, 480))
         pygame.display.set_caption("RANDOM RPG")
         self.clock = pygame.time.Clock()
+        self.player = player.Player("Player")
+        self.enemy = player.Player("Enemy", False)
+
         self.states = {
-            'Title': gameStates.Title(),
-            'Game': gameStates.Game(),
-            'Moves': gameStates.Moves(),
-            'Stats': gameStates.Stats(),
-            'Attack': gameStates.Attack(),
-            'LevelUp': gameStates.LevelUp(),
-            'GameOver': gameStates.GameOver()
+            'Title': title.Title(self.player, self.enemy),
+            'Game': game.Game(self.player, self.enemy),
+            'Moves': moves.Moves(self.player, self.enemy),
+            'Stats': stats.Stats(self.player),
+            'Attack': attack.Attack(self.player, self.enemy),
+            'LevelUp': levelup.LevelUp(self.player, self.enemy),
+            'GameOver': gameover.GameOver(self.player)
         }
         self.stateName = 'Title'
         self.state = self.states[self.stateName]
@@ -29,6 +33,7 @@ class Game(object):
                 self.draw()
                 self.update()
                 pygame.display.update()
+                self.clock.tick(30)
 
     def draw(self):
         self.state.draw(self.window)
