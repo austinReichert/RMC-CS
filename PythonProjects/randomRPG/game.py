@@ -12,6 +12,7 @@ class Game(object):
             'Game': gameStates.Game(),
             'Moves': gameStates.Moves(),
             'Stats': gameStates.Stats(),
+            'Attack': gameStates.Attack(),
             'LevelUp': gameStates.LevelUp(),
             'GameOver': gameStates.GameOver()
         }

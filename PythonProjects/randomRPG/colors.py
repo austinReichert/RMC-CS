@@ -10,7 +10,9 @@ class Color:
     CYAN = (0, 255, 255)
     TEAL = (125, 170, 250)
     LIGHTBLUE = (173,216,230)
+    GREY = (192, 192, 192)
+    LIGHTGREY = (211, 211, 211)
     # color RGBS
 
-    COLORLIST = (BLACK, RED, PURPLE, BLUE, GREEN, YELLOW, CYAN, WHITE, TEAL, LIGHTBLUE)
+    COLORLIST = (BLACK, RED, PURPLE, BLUE, GREEN, YELLOW, CYAN, WHITE, TEAL, LIGHTBLUE, GREY, LIGHTGREY)
     # list of colors used to randomize colors

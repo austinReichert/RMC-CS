@@ -11,7 +11,8 @@ class State(object):
             "title": pygame.font.SysFont('Comic Sans MS', 65),
             "subtitle": pygame.font.SysFont('Comic Sans MS', 40),
             "base": pygame.font.SysFont('Comic Sans MS', 30),
-            "tiny": pygame.font.SysFont('Comic Sans MS', 20)
+            "tiny": pygame.font.SysFont('Comic Sans MS', 20),
+            "mini": pygame.font.SysFont('Comic Sans MS', 10)
         }
 
     def saveData(self, newData):
