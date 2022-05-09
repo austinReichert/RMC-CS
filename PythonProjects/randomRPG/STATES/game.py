@@ -45,6 +45,7 @@ class Game(State):
         self.statWindow(window, 25, 220, self.player)
         self.statWindow(window, 400, 40, self.enemy)
         self.makeButtons(window)
+        _displayText(window, 0, 0, Color.BLACK, "Turn {}".format(1), self.fonts['base'])
 
     def update(self):
         pass
