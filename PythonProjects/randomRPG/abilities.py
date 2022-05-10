@@ -27,7 +27,7 @@ class abilityDescriptions(object):
     # x = "".join(abilities.abilityDescriptions.armorShred.value)
 
 
-class manaCosts():
+class manaCosts:
     costs = {
         "simpleStrike": 0,
         "meditate": 0,
@@ -56,7 +56,7 @@ def simpleStrike(user, target):
         _spendHealth(target, (user.attack - target.defence))
 
 
-def meditate(user):
+def meditate(user, target=None):
     if _spendMana(user, manaCosts.costs['meditate']):
         amount = random.randint(1, 4 + round(user.maxMP * 0.1))
         _gainMana(user, amount)
@@ -73,7 +73,7 @@ def armorShred(user, target):
                 _spendHealth(target, amount)
 
 
-def heal(user):
+def heal(user, target=None):
     if _spendMana(user, manaCosts.costs['heal']):
         amount = random.randint(1, 4 + (round(user.maxHP * 0.1)))
         _gainHealth(user, amount)
@@ -98,7 +98,7 @@ def sacrificialStrike(user, target):
         _spendHealth(target, round((user.attack * 1.4) - _calculateDefense(target)))
 
 
-def defensiveForm(user):
+def defensiveForm(user, target=None):
     if _spendMana(user, manaCosts.costs['defensiveForm']):
         if round(user.defence * 0.35) + round(user.luck * 0.9) > _randomChance():
             user.defence = user.defence + random.randint(1, 3)
@@ -140,7 +140,7 @@ def healthSteal(user, target):
                 _spendHealth(target, amount)
 
 
-def armorConversion(user):
+def armorConversion(user, target=None):
     if _spendMana(user, manaCosts.costs['armorConversion']):
         if user.defence > 0:
             amount = user.defence
@@ -148,7 +148,7 @@ def armorConversion(user):
             user.maxHP = user.maxHP + (round(random.uniform(1.5, 2.5)) * amount)
 
 
-def luckConversion(user):
+def luckConversion(user, target=None):
     if _spendMana(user, manaCosts.costs['luckConversion']):
         if user.luck > 0:
             amount = user.luck
@@ -179,7 +179,6 @@ def bigStrike(user, target):
 def cuttingStrike(user, target):
     if _spendMana(user, manaCosts.costs['cuttingStrike']):
         amount = round(random.uniform(1, 2 + (target.currentHP * 0.3)))
-        print(amount)
         _spendHealth(target, amount)
 
 

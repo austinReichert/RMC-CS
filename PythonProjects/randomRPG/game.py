@@ -10,10 +10,10 @@ class Game(object):
         self.clock = pygame.time.Clock()
         self.player = player.Player("Player")
         self.enemy = player.Player("Enemy", False)
-
+        self.turn = 0
         self.states = {
             'Title': title.Title(self.player, self.enemy),
-            'Game': game.Game(self.player, self.enemy),
+            'Game': game.Game(self.player, self.enemy, self.turn),
             'Moves': moves.Moves(self.player),
             'Stats': stats.Stats(self.player),
             'Attack': attack.Attack(self.player, self.enemy),
@@ -24,16 +24,20 @@ class Game(object):
         self.state = self.states[self.stateName]
 
     def gameLoop(self):
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
-                self.state.getEvent(event)
-                self.draw()
-                self.update()
-                pygame.display.update()
-                self.clock.tick(30)
+        try:
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        exit()
+                    self.state.getEvent(event)
+                    self.draw()
+                    self.update()
+                    pygame.display.update()
+                    self.clock.tick(30)
+        except KeyboardInterrupt:
+            pygame.quit()
+            exit()
 
     def draw(self):
         self.state.draw(self.window)
