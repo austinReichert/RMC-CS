@@ -14,7 +14,7 @@ class Game(object):
         self.states = {
             'Title': title.Title(self.player, self.enemy),
             'Game': game.Game(self.player, self.enemy),
-            'Moves': moves.Moves(self.player, self.enemy),
+            'Moves': moves.Moves(self.player),
             'Stats': stats.Stats(self.player),
             'Attack': attack.Attack(self.player, self.enemy),
             'LevelUp': levelup.LevelUp(self.player, self.enemy),

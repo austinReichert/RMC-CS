@@ -16,12 +16,11 @@ def _popOutText(window, x, y, topColor, bottomColor, text, font):
 
 
 class Moves(State):
-    def __init__(self, player, enemy):
+    def __init__(self, player):
         super().__init__()
         self.previousState = 'Game'
         self.nextState = None
         self.player = player
-        self.enemy = enemy
 
     def saveData(self, newData):
         self.data = newData
