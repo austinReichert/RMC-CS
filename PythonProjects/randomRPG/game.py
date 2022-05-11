@@ -1,5 +1,5 @@
 import pygame
-from STATES import title, game, moves, stats, attack, levelup, gameover
+from STATES import title, game, moves, stats, attack, showattack, levelup, gameover
 import player
 
 
@@ -10,13 +10,14 @@ class Game(object):
         self.clock = pygame.time.Clock()
         self.player = player.Player("Player")
         self.enemy = player.Player("Enemy", False)
-        self.turn = 0
+        self.turn = TurnTally()
         self.states = {
             'Title': title.Title(self.player, self.enemy),
             'Game': game.Game(self.player, self.enemy, self.turn),
             'Moves': moves.Moves(self.player),
             'Stats': stats.Stats(self.player),
             'Attack': attack.Attack(self.player, self.enemy),
+            'ShowAttack': showattack.ShowAttack(self.player, self.enemy, self.turn),
             'LevelUp': levelup.LevelUp(self.player, self.enemy),
             'GameOver': gameover.GameOver(self.player)
         }
@@ -33,8 +34,8 @@ class Game(object):
                     self.state.getEvent(event)
                     self.draw()
                     self.update()
+                    self.clock.tick(60)
                     pygame.display.update()
-                    self.clock.tick(30)
         except KeyboardInterrupt:
             pygame.quit()
             exit()
@@ -52,3 +53,16 @@ class Game(object):
             data = self.state.data
             self.state = self.states[self.stateName]
             self.state.start(data)
+
+
+class TurnTally(object):
+    def __init__(self):
+        self._turn = 1
+
+    @property
+    def turn(self):
+        return self._turn
+
+    @turn.setter
+    def turn(self, amount):
+        self._turn = amount

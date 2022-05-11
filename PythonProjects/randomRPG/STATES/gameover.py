@@ -32,3 +32,6 @@ class GameOver(State):
 
     def start(self, data):
         self.data = data
+
+    def clearData(self):
+        self.data.clear()

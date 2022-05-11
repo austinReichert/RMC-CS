@@ -13,7 +13,6 @@ class Player(Character):
         self._isHuman = isHuman
         self.name = name
         self._moveSet = self.randomizeMoveset()
-        self._name = ""
         self._level = 0
         self._luck = self.randomize(1, 6)
         self._attack = self.randomize(3, 6)
@@ -26,6 +25,7 @@ class Player(Character):
         self._scale = 0
 
     def levelUp(self):
+        self.name = self.name
         self.level = self.level + 1
         self.luck = (self.luck + self.randomize(1, 4)) + self.randomize(round(self.scale/5), self.scale)
         self.attack = (self.attack + self.randomize(1, 4)) + self.randomize(round(self.scale/5), self.scale)
@@ -53,3 +53,6 @@ class Player(Character):
 
     def getMoves(self):
         return self._moveSet
+
+    def generateMoveset(self):
+        self._moveSet = self.randomizeMoveset()

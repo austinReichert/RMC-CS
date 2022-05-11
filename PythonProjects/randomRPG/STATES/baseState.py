@@ -16,7 +16,7 @@ class State(object):
         }
 
     def saveData(self, newData):
-        self.data = newData
+        self.data[len(self.data)] = newData
 
     def getEvent(self, event):
         pass

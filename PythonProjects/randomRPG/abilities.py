@@ -29,25 +29,25 @@ class abilityDescriptions(object):
 
 class manaCosts:
     costs = {
-        "simpleStrike": 0,
+        "simpleStrike": 1,
         "meditate": 0,
-        "armorShred": 4,
+        "armorShred": 5,
         "heal": 2,
-        "manaSiphon": 2,
-        "luckyStrike": 3,
+        "manaSiphon": 3,
+        "luckyStrike": 4,
         "sacrificialStrike": 1,
         "defensiveForm": 5,
-        "quickAttack": 0,
-        "healingStrike": 4,
-        "halfSlash": 4,
-        "healthSteal": 2,
-        "armorConversion": 3,
-        "luckConversion": 3,
+        "quickAttack": 1,
+        "healingStrike": 5,
+        "halfSlash": 6,
+        "healthSteal": 3,
+        "armorConversion": 5,
+        "luckConversion": 5,
         "heavyStrike": 1,
-        "ultimateStrike": 6,
-        "bigStrike": 0,
-        "cuttingStrike": 2,
-        "chanceStrike": 0
+        "ultimateStrike": 9,
+        "bigStrike": 1,
+        "cuttingStrike": 3,
+        "chanceStrike": 1
     }
 
 
@@ -189,6 +189,11 @@ def chanceStrike(user, target):
             _spendHealth(target, amount)
         else:
             _gainHealth(target, amount)
+
+
+def passiveMana(target):
+    amount = random.randint(1, target.level)
+    _gainMana(target, amount)
 
 
 # functions used for upper functions

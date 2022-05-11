@@ -31,22 +31,25 @@ class Attack(State):
         self.enemy = enemy
         self.battle = battle.Battle(player, enemy)
 
-    def saveData(self, newData):
-        self.data = newData
-
     def getEvent(self, event):
+        if self.nextState is not None:
+            self.nextState = None
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 self.battle.attack(0, self.player, self.enemy)
+                self.saveData(self.saveMove(0))
                 self.completeAction()
             if event.key == pygame.K_2:
                 self.battle.attack(1, self.player, self.enemy)
+                self.saveData(self.saveMove(1))
                 self.completeAction()
             if event.key == pygame.K_3:
                 self.battle.attack(2, self.player, self.enemy)
+                self.saveData(self.saveMove(2))
                 self.completeAction()
             if event.key == pygame.K_4:
                 self.battle.attack(3, self.player, self.enemy)
+                self.saveData(self.saveMove(3))
                 self.completeAction()
             if event.key == pygame.K_SPACE:
                 self.complete = True
@@ -62,16 +65,21 @@ class Attack(State):
         _displayText(window, 150, 400, Color.RED, "Press space to return.", self.fonts['base'])
 
     def update(self):
-        pass
+        self.nextState = 'ShowAttack'
 
     def start(self, data):
         self.data = data
 
     def completeAction(self):
-        self.update()
         self.complete = True
+        self.update()
         self.passiveManaRegen()
 
     def passiveManaRegen(self):
-        abilities.meditate(self.player)
-        abilities.meditate(self.enemy)
+        abilities.passiveMana(self.player)
+        abilities.passiveMana(self.enemy)
+
+    def saveMove(self, number):
+        moves = self.player.getMoves()
+        move = moves[number]
+        return move

@@ -39,3 +39,6 @@ class Stats(State):
         _displayText(window, 220, 300, color, "HP: {}/{}".format(self.player.currentHP, self.player.maxHP), font)
         _displayText(window, 220, 350, color, "MP: {}/{}".format(self.player.currentMP, self.player.maxMP), font)
         _displayText(window, 150, 400, Color.RED, "Press any key to return.", font)
+
+    def start(self, data):
+        self.data = data

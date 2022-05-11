@@ -15,16 +15,16 @@ def _popOutText(window, x, y, topColor, bottomColor, text, font):
 
 
 class Game(State):
-    def __init__(self, player, enemy, turns):
+    def __init__(self, player, enemy, turn):
         super().__init__()
         self.previousState = 'Title'
         self.nextState = 'GameOver'
         self.player = player
         self.enemy = enemy
-        self.turns = turns
+        self.turn = turn
 
     def saveData(self, newData):
-        self.data += newData
+        self.data[len(self.data)] = newData
 
     def getEvent(self, event):
         if event.type == pygame.KEYDOWN:
@@ -44,7 +44,7 @@ class Game(State):
         self.statWindow(window, 25, 220, self.player)
         self.statWindow(window, 400, 40, self.enemy)
         self.makeButtons(window)
-        _displayText(window, 0, 0, Color.BLACK, "Turn {}".format(self.turns), self.fonts['base'])
+        _displayText(window, 0, 0, Color.BLACK, "Turn {}".format(self.turn.turn), self.fonts['base'])
 
     def update(self):
         pass

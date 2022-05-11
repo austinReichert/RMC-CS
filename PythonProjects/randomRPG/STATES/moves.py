@@ -22,9 +22,6 @@ class Moves(State):
         self.nextState = None
         self.player = player
 
-    def saveData(self, newData):
-        self.data = newData
-
     def getEvent(self, event):
         if event.type == pygame.KEYDOWN:
             self.complete = True
@@ -42,9 +39,6 @@ class Moves(State):
         self.showMoveData(window, 100, 200, color, moves[2], titleFont, descriptionFont, 3)
         self.showMoveData(window, 100, 275, color, moves[3], titleFont, descriptionFont, 4)
         _displayText(window, 150, 400, Color.RED, "Press any key to return.", self.fonts['base'])
-
-    def update(self):
-        pass
 
     def start(self, data):
         self.data = data
