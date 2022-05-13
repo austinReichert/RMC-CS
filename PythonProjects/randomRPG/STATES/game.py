@@ -89,7 +89,9 @@ class Game(State):
             _displayText(window, (x + 55), (y - 15), Color.PURPLE, key, self.fonts['tiny'])
 
     def checkHP(self, player, enemy):
-        if player.currentHP <= 0:
+        if player.currentHP <= 0 and enemy.currentHP <= 0:
+            self.nextState = 'GameOver'
+        elif player.currentHP <= 0:
             self.nextState = 'GameOver'
         elif enemy.currentHP <= 0:
             self.nextState = 'LevelUp'

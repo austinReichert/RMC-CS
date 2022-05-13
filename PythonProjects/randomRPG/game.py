@@ -1,6 +1,8 @@
-import pygame
-from STATES import title, game, moves, stats, attack, showattack, levelup, gameover
+import enemy
 import player
+import pygame
+
+from STATES import title, game, moves, stats, attack, showattack, levelup, gameover
 
 
 class Game(object):
@@ -9,7 +11,7 @@ class Game(object):
         pygame.display.set_caption("RANDOM RPG")
         self.clock = pygame.time.Clock()
         self.player = player.Player("Player")
-        self.enemy = player.Player("Enemy", False)
+        self.enemy = enemy.Enemy("Enemy")
         self.turn = TurnTally()
         self.states = {
             'Title': title.Title(self.player, self.enemy),

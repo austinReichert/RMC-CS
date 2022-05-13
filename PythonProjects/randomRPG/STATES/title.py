@@ -53,7 +53,7 @@ class Title(State):
         self.player.scale = self.scale
         self.enemy.scale = self.scale
         self.player.levelUp()
-        self.enemy.levelUp()
+        self.enemy.levelUp(self.player)
 
     def updateScale(self, amount):
         self.scale += amount

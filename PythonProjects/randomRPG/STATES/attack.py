@@ -22,6 +22,12 @@ def showMoveData(window, x, y, color, move, mainFont, secondFont, number):
                  secondFont)
 
 
+def getMove(number, character):
+    moves = character.getMoves()
+    move = moves[number]
+    return move
+
+
 class Attack(State):
     def __init__(self, player, enemy):
         super().__init__()
@@ -29,28 +35,20 @@ class Attack(State):
         self.nextState = None
         self.player = player
         self.enemy = enemy
-        self.battle = battle.Battle(player, enemy)
+        self.battle = battle
 
     def getEvent(self, event):
         if self.nextState is not None:
             self.nextState = None
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
-                self.battle.attack(0, self.player, self.enemy)
-                self.saveData(self.saveMove(0))
-                self.completeAction()
+                self.completeAction(getMove(0, self.player), 0)
             if event.key == pygame.K_2:
-                self.battle.attack(1, self.player, self.enemy)
-                self.saveData(self.saveMove(1))
-                self.completeAction()
+                self.completeAction(getMove(1, self.player), 1)
             if event.key == pygame.K_3:
-                self.battle.attack(2, self.player, self.enemy)
-                self.saveData(self.saveMove(2))
-                self.completeAction()
+                self.completeAction(getMove(2, self.player), 2)
             if event.key == pygame.K_4:
-                self.battle.attack(3, self.player, self.enemy)
-                self.saveData(self.saveMove(3))
-                self.completeAction()
+                self.completeAction(getMove(3, self.player), 3)
             if event.key == pygame.K_SPACE:
                 self.complete = True
 
@@ -70,16 +68,24 @@ class Attack(State):
     def start(self, data):
         self.data = data
 
-    def completeAction(self):
+    def completeAction(self, move, playerNumber):
+        enemyNumber = self.enemy.mainLogic(self.player)
+        enemyMove = getMove(enemyNumber, self.enemy)
+        if self.player.speed >= self.enemy.speed:
+            playerDmg = self.battle.attack(playerNumber, self.player, self.enemy)
+            self.saveCharacterAction(self.player.name, move, playerDmg)
+            enemyDmg = self.battle.attack(enemyNumber, self.enemy, self.player)
+            self.saveCharacterAction(self.enemy.name, enemyMove, enemyDmg)
+        else:
+            enemyDmg = self.battle.attack(enemyNumber, self.enemy, self.player)
+            self.saveCharacterAction(self.enemy.name, enemyMove, enemyDmg)
+            playerDmg = self.battle.attack(playerNumber, self.player, self.enemy)
+            self.saveCharacterAction(self.player.name, move, playerDmg)
         self.complete = True
         self.update()
-        self.passiveManaRegen()
+        print()
 
-    def passiveManaRegen(self):
-        abilities.passiveMana(self.player)
-        abilities.passiveMana(self.enemy)
-
-    def saveMove(self, number):
-        moves = self.player.getMoves()
-        move = moves[number]
-        return move
+    def saveCharacterAction(self, name, move, dmg):
+        self.saveData(name)
+        self.saveData(move)
+        self.saveData(dmg)
