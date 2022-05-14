@@ -21,6 +21,13 @@ def turnDecay(player, enemy, turn):
         abilities.turnDecay(enemy, turnAmount)
 
 
+def checkAccuracy(number):
+    if number > 0:
+        return True
+    else:
+        return False
+
+
 class ShowAttack(State):
     def __init__(self, player, enemy, turn):
         super().__init__()
@@ -58,19 +65,13 @@ class ShowAttack(State):
         colorB = Color.RED
         try:
             _displayText(window, x, y, colorA, "{} used {}!".format(self.data[numberName], self.data[numberMove]), self.fonts['base'])
-            if self.checkAccuracy(self.data[numberData]):
+            if checkAccuracy(self.data[numberData]):
                 _displayText(window, x, (y + 50), colorB,
                              "{} was used for {}!".format(self.data[numberMove], self.data[numberData]),
                              self.fonts['base'])
             else:
                 _displayText(window, x, (y + 50), colorB,
-                             "{}'s ability missed!".format(self.data[numberMove]),
+                             "{}'s ability missed!".format(self.data[numberName]),
                              self.fonts['base'])
         except KeyError:
             pass
-
-    def checkAccuracy(self, number):
-        if number > 0:
-            return True
-        else:
-            return False

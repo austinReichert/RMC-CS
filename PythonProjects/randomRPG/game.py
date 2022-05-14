@@ -11,7 +11,7 @@ class Game(object):
         pygame.display.set_caption("RANDOM RPG")
         self.clock = pygame.time.Clock()
         self.player = player.Player("Player")
-        self.enemy = enemy.Enemy("Enemy")
+        self.enemy = enemy.Enemy()
         self.turn = TurnTally()
         self.states = {
             'Title': title.Title(self.player, self.enemy),

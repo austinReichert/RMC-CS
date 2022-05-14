@@ -54,6 +54,8 @@ class manaCosts:
 def simpleStrike(user, target):
     if _spendMana(user, manaCosts.costs["simpleStrike"]):
         attackAmount = round(user.attack - target.defence)
+        if attackAmount < 0:
+            attackAmount = 0
         _spendHealth(target, attackAmount)
         return attackAmount
     else:
@@ -129,8 +131,8 @@ def sacrificialStrike(user, target):
 def defensiveForm(user, target=None):
     if _spendMana(user, manaCosts.costs['defensiveForm']):
         if round(user.defence * 0.35) + round(user.luck * 0.9) > _randomChance():
-            amount = user.defence + random.randint(1, 3)
-            user.defence = amount
+            amount = random.randint(1, 3)
+            user.defence = user.defence + amount
             return amount
         else:
             return 0
@@ -206,9 +208,9 @@ def armorConversion(user, target=None):
 def luckConversion(user, target=None):
     if _spendMana(user, manaCosts.costs['luckConversion']):
         if user.luck > 0:
-            amount = user.maxMP + (round(random.uniform(1.5, 3)) * user.luck)
+            amount = round(random.uniform(1.5, 3)) * user.luck
             user.luck = 0
-            user.maxMP = amount
+            user.maxMP = user.maxMP + amount
             return amount
         else:
             return 0

@@ -1,5 +1,5 @@
 import random
-
+import abilities
 from character import Character
 
 
@@ -8,9 +8,9 @@ class Enemy(Character):
                     "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
                     "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike"]
 
-    def __init__(self, name):
+    def __init__(self):
         super().__init__()
-        self.name = name
+        self.name = self.generateName()
         self._moveSet = self.randomizeMoveset()
         self._level = 0
         self._luck = self.randomize(1, 7)
@@ -25,19 +25,18 @@ class Enemy(Character):
 
     def levelUp(self, player):
         while self.level < player.level:
-            self.name = self.name
             self.level = self.level + 1
             self.luck = (self.luck + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3), self.scale)
             self.attack = (self.attack + self.randomize(1, self.level)) + self.randomize(round(self.scale / 8),
                                                                                          self.scale)
             self.defence = (self.defence + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3),
                                                                                            self.scale)
-            self.speed = (self.speed + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3),
-                                                                                       self.scale)
+            self.speed = (self.speed + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3),self.scale)
             self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.randomize(round(self.scale / 2), self.scale)
-            self.currentHP = self.maxHP
             self.maxMP = (self.maxMP + self.randomize(1, 3)) + self.randomize(round(self.scale / 15), round(self.scale/2))
-            self.currentMP = self.maxMP
+        self.currentHP = self.maxHP
+        self.currentMP = self.maxMP
+        self.name = self.generateName()
 
     def randomize(self, minNum, maxNum):
         if maxNum == 0:
@@ -60,6 +59,11 @@ class Enemy(Character):
     def generateMoveset(self):
         self._moveSet = self.randomizeMoveset()
 
+    def generateName(self):
+        names = ["Kevin", "Cryptpaw", "Shade", "Hauntsoul", "Rotwing", "Crabman", "Moldtaur", "Handvine", "Spiteling", "Lich", "Firepaw", "Dogbot", "Wraith", "Blaze", "Rotclaw", "Umbrah", "Armorpaw", "Goblin", "Catten", "Obu", "Red Slime", "Gauss", "Dozar", "Iago", "Ink Eel", "Prowler", "Slurpem", "Python", "Boombat", "Darkpaw", "Eyecell"]
+        name = names[random.randint(0, (len(names)-1))]
+        return name
+
     def mainLogic(self, player):
         moveSet = self.getMoves()
         moveNumber = self.offenseLogic(moveSet)
@@ -67,7 +71,6 @@ class Enemy(Character):
             moveNumber = self.defenceLogic(moveSet)
         if moveNumber is None:
             moveNumber = random.randint(0, 3)
-            print(moveNumber)
         return moveNumber
 
     def offenseLogic(self, moveSet):

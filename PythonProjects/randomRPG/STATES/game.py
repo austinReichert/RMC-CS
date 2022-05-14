@@ -57,8 +57,8 @@ class Game(State):
         windowY = 135
         pygame.draw.rect(window, Color.GREY, (baseX, baseY, (windowX + 4), (windowY + 2)))
         pygame.draw.rect(window, Color.LIGHTGREY, (baseX, baseY, windowX, windowY))
-        _displayText(window, (baseX + 10), (baseY + 5), Color.BLUE, character.name, self.fonts['tiny'])
-        _displayText(window, (baseX + 100), (baseY + 5), Color.BLACK, "Level: {}".format(character.level),
+        _displayText(window, (baseX + 5), (baseY + 5), Color.BLUE, character.name, self.fonts['tiny'])
+        _displayText(window, (baseX + 105), (baseY + 5), Color.BLACK, "Level: {}".format(character.level),
                      self.fonts['tiny'])
         _popOutText(window, (baseX + 10), (baseY + 25), Color.RED, Color.BLUE, "HP:", self.fonts['base'])
         _displayText(window, (baseX + 95), (baseY + 30), Color.PURPLE,
