@@ -2,7 +2,7 @@ import abilities
 
 
 def attack(number, user, target):
-    moves = user.getMoves()
+    moves = user.moveSet
     move = moves[number]
     ability = getattr(abilities, move)
     attackAmount = ability(user, target)

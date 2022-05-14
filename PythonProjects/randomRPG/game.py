@@ -20,7 +20,7 @@ class Game(object):
             'Stats': stats.Stats(self.player),
             'Attack': attack.Attack(self.player, self.enemy),
             'ShowAttack': showattack.ShowAttack(self.player, self.enemy, self.turn),
-            'LevelUp': levelup.LevelUp(self.player, self.enemy),
+            'LevelUp': levelup.LevelUp(self.player, self.enemy, self.turn),
             'GameOver': gameover.GameOver(self.player)
         }
         self.stateName = 'Title'

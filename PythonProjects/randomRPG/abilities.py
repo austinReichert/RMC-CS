@@ -9,7 +9,7 @@ class abilityDescriptions(object):
         "heal": "Regens a random amount of health (1 - 4 + 15% Max HP)",
         "manaSiphon": "Strikes enemy based on Mana and regens mana a random amount (1 - 1 + 20% Current Mana)",
         "luckyStrike": "Low chance (5% + 30% Luck) to strike for extra damage (50% Luck + 100% Attack)",
-        "sacrificialStrike": "Strikes enemy for extra (140% attack) after taking recoil (65% attack)",
+        "sacrificialStrike": "Strikes enemy for extra (150% attack) after taking recoil (65% attack)",
         "defensiveForm": "Low chance (35% Defence + 90% Luck) to gain a random amount of defence (1-3)",
         "quickAttack": "Strikes enemy, dealing extra damage if enemy speed is lower (25% Attack + 100% Speed)",
         "healingStrike": "Strikes enemy, healing for the same amount of damage dealt (100% Attack)",
@@ -21,7 +21,8 @@ class abilityDescriptions(object):
         "ultimateStrike": "Strikes enemy based off every stat (60% Every stat total)",
         "bigStrike": "Chance (16.5% + 100% Luck) to strike enemy for extra damage (145% Attack)",
         "cuttingStrike": "Strikes enemy based off their current Health (1 - 2 + 30% Current HP)",
-        "chanceStrike": "Chance (30% + 100% Luck) to strike enemy for extra damage. Misses heal the opponent (110% Attack)"
+        "chanceStrike": "Chance (30% + 100% Luck) to strike enemy for extra damage. Misses heal the opponent (110% Attack)",
+        "wait": "Does literally nothing"
     }
 
     # x = "".join(abilities.abilityDescriptions.armorShred.value)
@@ -47,7 +48,8 @@ class manaCosts:
         "ultimateStrike": 12,
         "bigStrike": 2,
         "cuttingStrike": 4,
-        "chanceStrike": 2
+        "chanceStrike": 2,
+        "wait": 0
     }
 
 
@@ -120,7 +122,7 @@ def luckyStrike(user, target):
 
 def sacrificialStrike(user, target):
     if _spendMana(user, manaCosts.costs['sacrificialStrike']):
-        amount = round((user.attack * 1.4) - _calculateDefense(target))
+        amount = round((user.attack * 1.5) - _calculateDefense(target))
         _spendHealth(user, round((user.attack * 0.65) - _calculateDefense(user)))
         _spendHealth(target, amount)
         return amount
@@ -265,6 +267,14 @@ def chanceStrike(user, target):
             _spendHealth(target, amount)
         else:
             _gainHealth(target, amount)
+        return amount
+    else:
+        return 0
+
+
+def wait(user, target=None):
+    if _spendMana(user, manaCosts.costs['wait']):
+        amount = random.randint(0, 9000)
         return amount
     else:
         return 0

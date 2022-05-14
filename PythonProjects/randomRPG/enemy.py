@@ -6,12 +6,12 @@ from character import Character
 class Enemy(Character):
     _moveOptions = ["simpleStrike", "meditate", "armorShred", "heal", "manaSiphon", "luckyStrike", "sacrificialStrike",
                     "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
-                    "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike"]
+                    "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike", "wait"]
 
     def __init__(self):
         super().__init__()
         self.name = self.generateName()
-        self._moveSet = self.randomizeMoveset()
+        self.randomizeMoveset()
         self._level = 0
         self._luck = self.randomize(1, 7)
         self._attack = self.randomize(1, 5)
@@ -37,6 +37,7 @@ class Enemy(Character):
         self.currentHP = self.maxHP
         self.currentMP = self.maxMP
         self.name = self.generateName()
+        self.generateMoveset()
 
     def randomize(self, minNum, maxNum):
         if maxNum == 0:
@@ -48,39 +49,19 @@ class Enemy(Character):
     def randomizeMoveset(self):
         moves = []
         while len(moves) < 4:
-            toAdd = self._moveOptions[random.randint(0, 18)]
+            toAdd = self._moveOptions[random.randint(0, len(self._moveOptions) - 1)]
             if toAdd not in moves:
                 moves.append(toAdd)
         return moves
 
-    def getMoves(self):
-        return self._moveSet
-
     def generateMoveset(self):
-        self._moveSet = self.randomizeMoveset()
+        self.moveSet = self.randomizeMoveset()
 
     def generateName(self):
         names = ["Kevin", "Cryptpaw", "Shade", "Hauntsoul", "Rotwing", "Crabman", "Moldtaur", "Handvine", "Spiteling", "Lich", "Firepaw", "Dogbot", "Wraith", "Blaze", "Rotclaw", "Umbrah", "Armorpaw", "Goblin", "Catten", "Obu", "Red Slime", "Gauss", "Dozar", "Iago", "Ink Eel", "Prowler", "Slurpem", "Python", "Boombat", "Darkpaw", "Eyecell"]
         name = names[random.randint(0, (len(names)-1))]
         return name
 
-    def mainLogic(self, player):
-        moveSet = self.getMoves()
-        moveNumber = self.offenseLogic(moveSet)
-        if moveNumber is None:
-            moveNumber = self.defenceLogic(moveSet)
-        if moveNumber is None:
-            moveNumber = random.randint(0, 3)
-        return moveNumber
-
-    def offenseLogic(self, moveSet):
-        attackMoves = ["simpleStrike", "armorShred", "manaSiphon", "luckyStrike", "sacrificialStrike", "quickAttack",
-                       "healingStrike", "halfSlash", "healthSteal", "heavyStrike", "ultimateStrike", "bigStrike",
-                       "cuttingStrike", "chanceStrike"]
-        moveNumber = None
-        return moveNumber
-
-    def defenceLogic(self, moveSet):
-        supportMoves = ["meditate", "heal", "defensiveForm", "armorConversion", "luckConversion"]
-        moveNumber = None
+    def mainLogic(self):
+        moveNumber = random.randint(0, 3)
         return moveNumber

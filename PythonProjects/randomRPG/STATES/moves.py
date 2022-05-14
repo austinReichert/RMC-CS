@@ -32,7 +32,7 @@ class Moves(State):
         color = Color.BLUE
         titleFont = self.fonts['base']
         descriptionFont = self.fonts['mini']
-        moves = self.player.getMoves()
+        moves = self.player.moveSet
         _popOutText(window, 240, 0, Color.RED, color, self.player.name, self.fonts['base'])
         self.showMoveData(window, 100, 50, color, moves[0], titleFont, descriptionFont, 1)
         self.showMoveData(window, 100, 125, color, moves[1], titleFont, descriptionFont, 2)

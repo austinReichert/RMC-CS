@@ -4,6 +4,7 @@ import random
 class Character(object):
     def __init__(self):
         self._name = ""
+        self._moveSet = []
         self._level = 0
         self._luck = 0
         self._attack = 0
@@ -34,6 +35,14 @@ class Character(object):
     @name.setter
     def name(self, newName):
         self._name = newName
+
+    @property
+    def moveSet(self):
+        return self._moveSet
+
+    @moveSet.setter
+    def moveSet(self, newMoveSet):
+        self._moveSet = newMoveSet
 
     @property
     def level(self):

@@ -6,12 +6,12 @@ from character import Character
 class Player(Character):
     _moveOptions = ["simpleStrike", "meditate", "armorShred", "heal", "manaSiphon", "luckyStrike", "sacrificialStrike",
                     "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
-                    "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike"]
+                    "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike", "wait"]
 
     def __init__(self, name):
         super().__init__()
         self.name = name
-        self._moveSet = self.randomizeMoveset()
+        self.randomizeMoveset()
         self._level = 0
         self._luck = self.randomize(1, 6)
         self._attack = self.randomize(1, 4)
@@ -34,6 +34,7 @@ class Player(Character):
         self.currentHP = self.maxHP
         self.maxMP = (self.maxMP + self.randomize(1, 3)) + self.randomize(round(self.scale/16), round(self.scale/8))
         self.currentMP = self.maxMP
+        self.generateMoveset()
 
     def randomize(self, minNum, maxNum):
         if maxNum == 0:
@@ -45,13 +46,10 @@ class Player(Character):
     def randomizeMoveset(self):
         moves = []
         while len(moves) < 4:
-            toAdd = self._moveOptions[random.randint(0, 18)]
+            toAdd = self._moveOptions[random.randint(0, len(self._moveOptions)-1)]
             if toAdd not in moves:
                 moves.append(toAdd)
         return moves
 
-    def getMoves(self):
-        return self._moveSet
-
     def generateMoveset(self):
-        self._moveSet = self.randomizeMoveset()
+        self.moveSet = self.randomizeMoveset()

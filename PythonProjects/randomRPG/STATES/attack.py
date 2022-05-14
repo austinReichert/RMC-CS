@@ -23,7 +23,7 @@ def showMoveData(window, x, y, color, move, mainFont, secondFont, number):
 
 
 def getMove(number, character):
-    moves = character.getMoves()
+    moves = character.moveSet
     move = moves[number]
     return move
 
@@ -53,8 +53,9 @@ class Attack(State):
                 self.complete = True
 
     def draw(self, window):
-        moves = self.player.getMoves()
+        moves = self.player.moveSet
         window.fill(Color.LIGHTBLUE)
+        _displayText(window, 25, 0, Color.PURPLE, "HP:{} MP:{}".format(self.player.currentHP, self.player.currentMP), self.fonts['tiny'])
         _displayText(window, 125, 25, Color.RED, "Press a key to use that ability.", self.fonts['base'])
         showMoveData(window, 150, 75, Color.BLUE, moves[0], self.fonts['subtitle'], self.fonts['tiny'], 1)
         showMoveData(window, 150, 150, Color.BLUE, moves[1], self.fonts['subtitle'], self.fonts['tiny'], 2)
@@ -69,7 +70,7 @@ class Attack(State):
         self.data = data
 
     def completeAction(self, move, playerNumber):
-        enemyNumber = self.enemy.mainLogic(self.player)
+        enemyNumber = self.enemy.mainLogic()
         enemyMove = getMove(enemyNumber, self.enemy)
         if self.player.speed >= self.enemy.speed:
             playerDmg = self.battle.attack(playerNumber, self.player, self.enemy)
