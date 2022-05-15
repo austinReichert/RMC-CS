@@ -44,10 +44,11 @@ class Title(State):
 
     def draw(self, window):
         window.fill(Color.LIGHTBLUE)
-        _popOutText(window, 120, 50, Color.RED, Color.BLUE, "RANDOM RPG", self.fonts['title'])
-        _displayText(window, 160, 177, Color.BLUE, "Press Space To Begin", self.fonts['base'])
+        _popOutText(window, 100, 50, Color.RED, Color.BLUE, "RANDOM RPG", self.fonts['title'])
+        _displayText(window, 150, 177, Color.BLUE, "Press Space To Begin", self.fonts['base'])
         _displayText(window, 50, 250, Color.RED, "Press 1 (-) and 2 (+) to set scale amount", self.fonts['base'])
         _displayText(window, 300, 300, Color.BLUE, self.scale, self.fonts['tiny'])
+        _popOutText(window, 250, 350, Color.RED, Color.GREEN, "Made by Austin Reichert", self.fonts['mini'])
 
     def update(self):
         self.player.scale = self.scale

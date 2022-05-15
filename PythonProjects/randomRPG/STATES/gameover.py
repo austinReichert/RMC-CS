@@ -15,23 +15,50 @@ def _popOutText(window, x, y, topColor, bottomColor, text, font):
 
 
 class GameOver(State):
-    def __init__(self, player):
+    def __init__(self, player, enemy, turn):
         super().__init__()
         self.previousState = 'Game'
         self.nextState = 'Title'
         self.player = player
+        self.enemy = enemy
+        self.turn = turn
+        self.updated = False
 
     def getEvent(self, event):
-        pass
+        if self.updated is False:
+            self.checkUpdated()
+        if event.type == pygame.KEYDOWN:
+            self.update()
 
     def draw(self, window):
-        pass
+        window.fill(Color.LIGHTBLUE)
+        _displayText(window, 150, 0, Color.RED, "You DIED!", self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Level:{}".format(self.player.level), self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Luck:{}".format(self.player.luck), self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Attack:{}".format(self.player.attack), self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Defence:{}".format(self.player.defence), self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Speed:{}".format(self.player.speed), self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Max HP:{}".format(self.player.maxHP), self.fonts['base'])
+        _displayText(window, 150, 50, Color.BLUE, "Max MP:{}".format(self.player.maxMP), self.fonts['base'])
+        _displayText(window, 150, 400, Color.RED, "Press any key to return.", self.fonts['base'])
 
     def update(self):
-        pass
+        self.updated = False
+        self.clearData()
+        self.complete = True
+        self.resetCharacters()
 
     def start(self, data):
         self.data = data
 
     def clearData(self):
         self.data.clear()
+
+    def checkUpdated(self):
+        if self.player.currentHP <= 0:
+            self.updated = True
+
+    def resetCharacters(self):
+        self.player.reset()
+        self.enemy.reset()
+        self.turn.reset()

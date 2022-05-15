@@ -44,8 +44,9 @@ class ShowAttack(State):
 
     def draw(self, window):
         window.fill(Color.LIGHTBLUE)
+        _displayText(window, 250, 50, Color.PURPLE, "FIGHT!", self.fonts['base'])
         self.showAction(window, 100, 100, 0, 1, 2)
-        self.showAction(window, 100, 200, 3, 4, 5)
+        self.showAction(window, 100, 250, 3, 4, 5)
         _displayText(window, 150, 400, Color.RED, "Press space to continue.", self.fonts['base'])
 
     def update(self):
@@ -62,7 +63,7 @@ class ShowAttack(State):
 
     def showAction(self, window, x, y, numberName, numberMove, numberData):
         colorA = Color.BLUE
-        colorB = Color.RED
+        colorB = Color.TEAL
         try:
             _displayText(window, x, y, colorA, "{} used {}!".format(self.data[numberName], self.data[numberMove]), self.fonts['base'])
             if checkAccuracy(self.data[numberData]):

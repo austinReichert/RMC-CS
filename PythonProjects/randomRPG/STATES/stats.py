@@ -30,7 +30,7 @@ class Stats(State):
         font = self.fonts['base']
         color = Color.BLUE
         window.fill(Color.LIGHTBLUE)
-        _popOutText(window, 240, 0, Color.RED, color, self.player.name, font)
+        _popOutText(window, 200, 0, Color.RED, color, "{}s stats".format(self.player.name), self.fonts['subtitle'])
         _displayText(window, 220, 50, color, "LEVEL: {}".format(self.player.level), font)
         _displayText(window, 220, 100, color, "LUCK: {}".format(self.player.luck), font)
         _displayText(window, 220, 150, color, "ATTACK: {}".format(self.player.attack), font)

@@ -38,8 +38,8 @@ class LevelUp(State):
                 self.updated = False
 
     def draw(self, window):
-        print(self.stats)
         window.fill(Color.LIGHTBLUE)
+        _displayText(window, 100, 50, Color.PURPLE, "YOU LEVELED UP!", self.fonts['base'])
         _displayText(window, 50, 100, Color.BLUE, "{}'s Luck increased by {}!".format(self.player.name, self.stats[0]), self.fonts['base'])
         _displayText(window, 50, 150, Color.BLUE, "{}'s Attack increased by {}!".format(self.player.name, self.stats[1]), self.fonts['base'])
         _displayText(window, 50, 200, Color.BLUE, "{}'s Defence increased by {}!".format(self.player.name, self.stats[2]), self.fonts['base'])

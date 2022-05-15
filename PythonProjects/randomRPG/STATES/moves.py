@@ -33,11 +33,11 @@ class Moves(State):
         titleFont = self.fonts['base']
         descriptionFont = self.fonts['mini']
         moves = self.player.moveSet
-        _popOutText(window, 240, 0, Color.RED, color, self.player.name, self.fonts['base'])
-        self.showMoveData(window, 100, 50, color, moves[0], titleFont, descriptionFont, 1)
-        self.showMoveData(window, 100, 125, color, moves[1], titleFont, descriptionFont, 2)
-        self.showMoveData(window, 100, 200, color, moves[2], titleFont, descriptionFont, 3)
-        self.showMoveData(window, 100, 275, color, moves[3], titleFont, descriptionFont, 4)
+        _popOutText(window, 200, 0, Color.RED, color, "{}s moves".format(self.player.name), self.fonts['subtitle'])
+        self.showMoveData(window, 100, 75, color, moves[0], titleFont, descriptionFont, 1)
+        self.showMoveData(window, 100, 150, color, moves[1], titleFont, descriptionFont, 2)
+        self.showMoveData(window, 100, 225, color, moves[2], titleFont, descriptionFont, 3)
+        self.showMoveData(window, 100, 300, color, moves[3], titleFont, descriptionFont, 4)
         _displayText(window, 150, 400, Color.RED, "Press any key to return.", self.fonts['base'])
 
     def start(self, data):

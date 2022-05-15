@@ -1,6 +1,7 @@
 import enemy
 import player
 import pygame
+import turn
 
 from STATES import title, game, moves, stats, attack, showattack, levelup, gameover
 
@@ -10,9 +11,9 @@ class Game(object):
         self.window = pygame.display.set_mode((640, 480))
         pygame.display.set_caption("RANDOM RPG")
         self.clock = pygame.time.Clock()
-        self.player = player.Player("Player")
+        self.player = player.Player()
         self.enemy = enemy.Enemy()
-        self.turn = TurnTally()
+        self.turn = turn.Turn()
         self.states = {
             'Title': title.Title(self.player, self.enemy),
             'Game': game.Game(self.player, self.enemy, self.turn),
@@ -21,7 +22,7 @@ class Game(object):
             'Attack': attack.Attack(self.player, self.enemy),
             'ShowAttack': showattack.ShowAttack(self.player, self.enemy, self.turn),
             'LevelUp': levelup.LevelUp(self.player, self.enemy, self.turn),
-            'GameOver': gameover.GameOver(self.player)
+            'GameOver': gameover.GameOver(self.player, self.enemy, self.turn)
         }
         self.stateName = 'Title'
         self.state = self.states[self.stateName]
@@ -55,16 +56,3 @@ class Game(object):
             data = self.state.data
             self.state = self.states[self.stateName]
             self.state.start(data)
-
-
-class TurnTally(object):
-    def __init__(self):
-        self._turn = 1
-
-    @property
-    def turn(self):
-        return self._turn
-
-    @turn.setter
-    def turn(self, amount):
-        self._turn = amount

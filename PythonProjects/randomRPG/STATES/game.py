@@ -27,6 +27,7 @@ class Game(State):
         self.data[len(self.data)] = newData
 
     def getEvent(self, event):
+        self.checkHP(self.player, self.enemy)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 self.nextState = 'Stats'
@@ -37,7 +38,6 @@ class Game(State):
             if event.key == pygame.K_3:
                 self.nextState = 'Attack'
                 self.complete = True
-        self.checkHP(self.player, self.enemy)
 
     def draw(self, window):
         window.fill(Color.LIGHTBLUE)
@@ -91,7 +91,10 @@ class Game(State):
     def checkHP(self, player, enemy):
         if player.currentHP <= 0 and enemy.currentHP <= 0:
             self.nextState = 'GameOver'
+            self.complete = True
         elif player.currentHP <= 0:
             self.nextState = 'GameOver'
+            self.complete = True
         elif enemy.currentHP <= 0:
             self.nextState = 'LevelUp'
+            self.complete = True

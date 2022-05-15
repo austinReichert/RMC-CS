@@ -2,7 +2,6 @@ import random
 import abilities
 from character import Character
 
-
 class Enemy(Character):
     _moveOptions = ["simpleStrike", "meditate", "armorShred", "heal", "manaSiphon", "luckyStrike", "sacrificialStrike",
                     "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
@@ -13,9 +12,9 @@ class Enemy(Character):
         self.name = self.generateName()
         self.randomizeMoveset()
         self._level = 0
-        self._luck = self.randomize(1, 7)
-        self._attack = self.randomize(1, 5)
-        self._defence = self.randomize(1, 6)
+        self._luck = self.randomize(1, 6)
+        self._attack = self.randomize(1, 4)
+        self._defence = self.randomize(1, 5)
         self._speed = self.randomize(1, 6)
         self._maxHP = self.randomize(5, 21)
         self._currentHP = self._maxHP
@@ -38,6 +37,18 @@ class Enemy(Character):
         self.currentMP = self.maxMP
         self.name = self.generateName()
         self.generateMoveset()
+
+    def reset(self):
+        self.level = 0
+        self.luck = self.randomize(1, 6)
+        self.attack = self.randomize(1, 4)
+        self.defence = self.randomize(1, 5)
+        self.speed = self.randomize(1, 5)
+        self.maxHP = self.randomize(5, 20)
+        self.currentHP = self.maxHP
+        self.maxMP = self.randomize(4, 8)
+        self.currentMP = self.maxMP
+        self.scale = 0
 
     def randomize(self, minNum, maxNum):
         if maxNum == 0:
