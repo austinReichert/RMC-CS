@@ -25,16 +25,15 @@ class Player(Character):
         self._scale = 0
 
     def levelUp(self):
-        self.name = self.name
         self.level = self.level + 1
         self.luck = (self.luck + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3), self.scale)
-        self.attack = (self.attack + self.randomize(1, self.level)) + self.randomize(round(self.scale / 8), self.scale)
+        self.attack = (self.attack + self.randomize(1, self.level)) + self.randomize(round(self.scale / 8), round(self.scale/2))
         self.defence = (self.defence + self.randomize(1, self.level)) + self.randomize(round(self.scale / 4),
                                                                                        self.scale)
         self.speed = (self.speed + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3), self.scale)
-        self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.randomize(round(self.scale / 3), self.scale)
+        self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.randomize(round(self.scale / 2), self.scale)
         self.currentHP = self.maxHP
-        self.maxMP = (self.maxMP + self.randomize(1, 3)) + self.randomize(round(self.scale / 16), round(self.scale / 8))
+        self.maxMP = (self.maxMP + self.randomize(0, 3)) + self.randomize(round(self.scale / 16), round(self.scale / 8))
         self.currentMP = self.maxMP
         self.generateMoveset()
 

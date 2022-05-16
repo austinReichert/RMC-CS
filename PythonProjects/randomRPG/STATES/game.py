@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 from STATES.baseState import State
@@ -90,8 +92,12 @@ class Game(State):
 
     def checkHP(self, player, enemy):
         if player.currentHP <= 0 and enemy.currentHP <= 0:
-            self.nextState = 'GameOver'
-            self.complete = True
+            if random.randint(0, 100) < 50:
+                self.nextState = 'GameOver'
+                self.complete = True
+            else:
+                self.nextState = 'LevelUp'
+                self.complete = True
         elif player.currentHP <= 0:
             self.nextState = 'GameOver'
             self.complete = True

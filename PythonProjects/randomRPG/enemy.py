@@ -14,25 +14,26 @@ class Enemy(Character):
         self._level = 0
         self._luck = self.randomize(1, 6)
         self._attack = self.randomize(1, 4)
-        self._defence = self.randomize(1, 5)
-        self._speed = self.randomize(1, 6)
-        self._maxHP = self.randomize(5, 21)
+        self._defence = self.randomize(1, 4)
+        self._speed = self.randomize(1, 5)
+        self._maxHP = self.randomize(5, 22)
         self._currentHP = self._maxHP
-        self._maxMP = self.randomize(4, 10)
+        self._maxMP = self.randomize(4, 8)
         self._currentMP = self._maxMP
         self._scale = 0
 
     def levelUp(self, player):
+        self.reset()
         while self.level < player.level:
             self.level = self.level + 1
             self.luck = (self.luck + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3), self.scale)
             self.attack = (self.attack + self.randomize(1, self.level)) + self.randomize(round(self.scale / 8),
-                                                                                         self.scale)
-            self.defence = (self.defence + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3),
+                                                                                         round(self.scale/2))
+            self.defence = (self.defence + self.randomize(1, self.level)) + self.randomize(round(self.scale / 4),
                                                                                            self.scale)
             self.speed = (self.speed + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3),self.scale)
             self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.randomize(round(self.scale / 2), self.scale)
-            self.maxMP = (self.maxMP + self.randomize(1, 3)) + self.randomize(round(self.scale / 15), round(self.scale/2))
+            self.maxMP = (self.maxMP + self.randomize(0, 3)) + self.randomize(round(self.scale / 16), round(self.scale/8))
         self.currentHP = self.maxHP
         self.currentMP = self.maxMP
         self.name = self.generateName()
@@ -42,9 +43,9 @@ class Enemy(Character):
         self.level = 0
         self.luck = self.randomize(1, 6)
         self.attack = self.randomize(1, 4)
-        self.defence = self.randomize(1, 5)
+        self.defence = self.randomize(1, 4)
         self.speed = self.randomize(1, 5)
-        self.maxHP = self.randomize(5, 20)
+        self.maxHP = self.randomize(5, 22)
         self.currentHP = self.maxHP
         self.maxMP = self.randomize(4, 8)
         self.currentMP = self.maxMP
