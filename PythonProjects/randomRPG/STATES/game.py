@@ -16,6 +16,16 @@ def _popOutText(window, x, y, topColor, bottomColor, text, font):
     _displayText(window, x + 2, y + 2, topColor, text, font)
 
 
+def checkBoss(character):
+    try:
+        if character.isBoss:
+            return True
+        else:
+            return False
+    except AttributeError:
+        return False
+
+
 class Game(State):
     def __init__(self, player, enemy, turn):
         super().__init__()
@@ -44,7 +54,9 @@ class Game(State):
     def draw(self, window):
         window.fill(Color.LIGHTBLUE)
         self.statWindow(window, 25, 220, self.player)
-        self.statWindow(window, 400, 40, self.enemy)
+        self.statWindow(window, 375, 40, self.enemy)
+        if self.enemy.isBoss:
+            _popOutText(window, 450, 0, Color.PURPLE, Color.TEAL, "BOSS", self.fonts['base'])
         self.makeButtons(window)
         _displayText(window, 0, 0, Color.BLACK, "Turn {}".format(self.turn.turn), self.fonts['base'])
 
@@ -55,7 +67,7 @@ class Game(State):
         self.data = data
 
     def statWindow(self, window, baseX, baseY, character):
-        windowX = 225
+        windowX = 250
         windowY = 135
         pygame.draw.rect(window, Color.GREY, (baseX, baseY, (windowX + 4), (windowY + 2)))
         pygame.draw.rect(window, Color.LIGHTGREY, (baseX, baseY, windowX, windowY))

@@ -61,4 +61,5 @@ class GameOver(State):
     def resetCharacters(self):
         self.player.reset()
         self.enemy.reset()
+        self.enemy.resetScale()
         self.turn.reset()

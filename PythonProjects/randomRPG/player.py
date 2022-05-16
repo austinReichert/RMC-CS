@@ -7,7 +7,7 @@ class Player(Character):
     _moveOptions = ["simpleStrike", "meditate", "armorShred", "heal", "manaSiphon", "luckyStrike", "sacrificialStrike",
                     "defensiveForm", "quickAttack", "healingStrike", "halfSlash", "healthSteal", "armorConversion",
                     "luckConversion", "heavyStrike", "ultimateStrike", "bigStrike", "cuttingStrike", "chanceStrike",
-                    "wait"]
+                    "wait", "randomMove"]
 
     def __init__(self):
         super().__init__()
@@ -33,7 +33,7 @@ class Player(Character):
         self.speed = (self.speed + self.randomize(1, self.level)) + self.randomize(round(self.scale / 3), self.scale)
         self.maxHP = (self.maxHP + self.randomize(2, 10)) + self.randomize(round(self.scale / 2), self.scale)
         self.currentHP = self.maxHP
-        self.maxMP = (self.maxMP + self.randomize(0, 3)) + self.randomize(round(self.scale / 16), round(self.scale / 8))
+        self.maxMP = (self.maxMP + self.randomize(1, 3)) + self.randomize(round(self.scale / 16), round(self.scale / 8))
         self.currentMP = self.maxMP
         self.generateMoveset()
 
