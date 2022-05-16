@@ -34,12 +34,12 @@ class GameOver(State):
         window.fill(Color.LIGHTBLUE)
         _displayText(window, 150, 0, Color.RED, "You DIED!", self.fonts['base'])
         _displayText(window, 150, 50, Color.BLUE, "Level:{}".format(self.player.level), self.fonts['base'])
-        _displayText(window, 150, 50, Color.BLUE, "Luck:{}".format(self.player.luck), self.fonts['base'])
-        _displayText(window, 150, 50, Color.BLUE, "Attack:{}".format(self.player.attack), self.fonts['base'])
-        _displayText(window, 150, 50, Color.BLUE, "Defence:{}".format(self.player.defence), self.fonts['base'])
-        _displayText(window, 150, 50, Color.BLUE, "Speed:{}".format(self.player.speed), self.fonts['base'])
-        _displayText(window, 150, 50, Color.BLUE, "Max HP:{}".format(self.player.maxHP), self.fonts['base'])
-        _displayText(window, 150, 50, Color.BLUE, "Max MP:{}".format(self.player.maxMP), self.fonts['base'])
+        _displayText(window, 150, 100, Color.BLUE, "Luck:{}".format(self.player.luck), self.fonts['base'])
+        _displayText(window, 150, 150, Color.BLUE, "Attack:{}".format(self.player.attack), self.fonts['base'])
+        _displayText(window, 150, 200, Color.BLUE, "Defence:{}".format(self.player.defence), self.fonts['base'])
+        _displayText(window, 150, 250, Color.BLUE, "Speed:{}".format(self.player.speed), self.fonts['base'])
+        _displayText(window, 150, 300, Color.BLUE, "Max HP:{}".format(self.player.maxHP), self.fonts['base'])
+        _displayText(window, 150, 350, Color.BLUE, "Max MP:{}".format(self.player.maxMP), self.fonts['base'])
         _displayText(window, 150, 400, Color.RED, "Press any key to return.", self.fonts['base'])
 
     def update(self):

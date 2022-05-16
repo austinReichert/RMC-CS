@@ -37,9 +37,10 @@ class Title(State):
                 if self.scale > 0:
                     self.updateScale(-1)
             if event.key == pygame.K_2:
-                self.updateScale(1)
+                if self.scale < 2500:
+                    self.updateScale(1)
             if event.key == pygame.K_0:
-                if self.scale < 10000:
+                if self.scale < 2500:
                     self.updateScale(50)
 
     def draw(self, window):
