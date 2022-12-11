@@ -1,0 +1,1 @@
+CSC351 is algorithms. We also did some data structures as review

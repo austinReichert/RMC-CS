@@ -1,0 +1,26 @@
+RandomOrderedInts:
+Time for data size of 1: 0
+Time for data size of 10: 0
+Time for data size of 100: 0
+Time for data size of 1000: 3
+Time for data size of 10000: 72
+Time for data size of 100000: 1735
+Time for data size of 1000000: 164764
+
+OrderedInts:
+Time for data size of 1: 0
+Time for data size of 10: 0
+Time for data size of 100: 0
+Time for data size of 1000: 0
+Time for data size of 10000: 0
+Time for data size of 100000: 0
+Time for data size of 1000000: 2
+
+ReverseOrderedInts:
+Time for data size of 1: 0
+Time for data size of 10: 0
+Time for data size of 100: 0
+Time for data size of 1000: 0
+Time for data size of 10000: 32
+Time for data size of 100000: 3276
+Time for data size of 1000000: 330745
