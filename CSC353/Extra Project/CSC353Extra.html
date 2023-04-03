@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            text-align: center;
+            background-color: #bcd2eed3;
+            word-wrap: break-word;
+            margin: 0;
+        }
+
+        canvas {
+            border: 2px solid #929090;
+            border-style: groove;
+            border-radius: 2px;
+            background-color: #f1f1f1e0;
+            padding: 0;
+            margin: auto;
+            display: block;
+            text-align: center;
+            display: block;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-decoration: underline double;
+        }
+        table {
+            border: 2px groove;
+            text-align: center;
+            margin: auto;
+            padding: 2px;
+            background-color: #bcd2eeb9;
+        }
+        tr, th, td {
+            border: none;
+            text-align: center;
+            margin:auto;
+        }
+        button {
+            border: none;
+            color: white;
+            background-color: #4c56af;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 8px 2px;
+            padding: 4px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #4CAF50;
+        }
+    </style>
+    <meta charset="UTF-8"/>
+    <title>Ball Bounce</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="gameWindow" width="400" height="400"></canvas>
+        <table> 
+            <tr>
+                <td>
+                    <button id="ball" onclick="setCurrentItem(id)">Ball</button>
+                </td>
+                <td>
+                    <button id="line" onclick="setCurrentItem(id)">Line</button>
+                </td>
+                <td>
+                    <button id="clear" onclick="setCurrentItem(id)">Clear</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="CSC353Extra.JS"></script>
+</body>
+
+</html>
