@@ -115,31 +115,31 @@ function drawText(x, y, text, color) {
 
 // key functions
 function keyDown(key) {
-	if (key.keyCode == keyCodes.w) {
+	if (key.keyCode == keyCodes.w || key.keyCode == keyCodes.up) {
 		player.movementOptions.w = true;
 	}
-	if (key.keyCode == keyCodes.s) {
+	if (key.keyCode == keyCodes.s || key.keyCode == keyCodes.down) {
 		player.movementOptions.s = true;
 	}
-	if (key.keyCode == keyCodes.a) {
+	if (key.keyCode == keyCodes.a || key.keyCode == keyCodes.left) {
 		player.movementOptions.a = true;
 	}
-	if (key.keyCode == keyCodes.d) {
+	if (key.keyCode == keyCodes.d || key.keyCode == keyCodes.right) {
 		player.movementOptions.d = true;
 	}
 }
 
 function keyUp(key) {
-	if (key.keyCode == keyCodes.w) {
+	if (key.keyCode == keyCodes.w || key.keyCode == keyCodes.up) {
 		player.movementOptions.w = false;
 	}
-	if (key.keyCode == keyCodes.s) {
+	if (key.keyCode == keyCodes.s || key.keyCode == keyCodes.down) {
 		player.movementOptions.s = false;
 	}
-	if (key.keyCode == keyCodes.a) {
+	if (key.keyCode == keyCodes.a || key.keyCode == keyCodes.left) {
 		player.movementOptions.a = false;
 	}
-	if (key.keyCode == keyCodes.d) {
+	if (key.keyCode == keyCodes.d || key.keyCode == keyCodes.right) {
 		player.movementOptions.d = false;
 	}
 }
@@ -318,6 +318,10 @@ var keyCodes = {
 	a: 65,
 	s: 83,
 	d: 68,
+	up: 38,
+	left: 37,
+	down: 40,
+	right: 39
 };
 var player = {
 	x: gameWindow.width / 2,
