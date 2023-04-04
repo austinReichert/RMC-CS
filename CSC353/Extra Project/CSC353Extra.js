@@ -5,22 +5,36 @@ class ball {
     }
     name = "ball";
     size = 12;
-    color = "red";
-    x = 0;
-    y = 0;
-    moveSpeed = 5;
-    bounceCounter = 0;
+    color = "#991629";
+    x = 0.1;
+    y = 5;
+    velocityY = 1;
+    velocityX = 1;
+    gravity = 3;
     myIndex = 0;
     draw(){
         drawCircle(this.x, this.y, this.size, this.color);
     };
     update(){
+        lineArray.forEach(element => {
+            let eMaxY = Math.max(element.y, element.y1);
+            let eMinY = Math.min(element.y, element.y1);
+            let eMaxX = Math.max(element.x, element.x1);
+            let eMinX = Math.min(element.x, element.x1);
+            if (isBetween(eMinY, this.y, eMaxY) && isBetween(eMinX, this.x, eMaxX)){
+            this.velocityY *= this.gravity;
+            this.velocityX *= -this.gravity;
+            }
+        });
         if (this.y < gameWindow.height + this.size){
-            this.y += this.moveSpeed;
+            this.y += this.velocityY;
+            this.x += this.velocityX;
         }
         else {
-            objectArray.splice(this.myIndex, 1);
+            ballArray.splice(this.myIndex, 1);
         }
+        this.y += this.velocityY;
+        this.x += this.velocityX;
     };
 }
 
@@ -50,14 +64,15 @@ function gameLoop(){
 }
 
 function update(){
-    objectArray.forEach(element => element.update());
+    ballArray.forEach(element => element.update());
 }
 
 // draw functions
 
 function draw(){
     clearGameWindow();
-    objectArray.forEach(element => element.draw());
+    lineArray.forEach(element => element.draw());
+    ballArray.forEach(element => element.draw());
 }
 
 function drawLine(x, y, x1, y1, color){
@@ -81,6 +96,13 @@ function clearGameWindow() {
 
 // item functions
 
+function isBetween(lower, testValue, upper){
+    if ((lower < testValue && upper > testValue)){
+        return true;
+    }
+    return false;
+}
+
 function getMousePosition(e){
     var x = e.offsetX;
     var y = e.offsetY;
@@ -101,7 +123,7 @@ function spawnItem(x, y){
 function spawnBall(x, y){
     currentItem.x = x;
     currentItem.y = y;
-    currentItem.myIndex = objectArray.push(currentItem) - 1;
+    currentItem.myIndex = ballArray.push(currentItem) - 1;
     currentItem = null;
 }
 
@@ -113,7 +135,7 @@ function spawnLine(x, y){
     else {
         currentItem.x1 = x;
         currentItem.y1 = y;
-        currentItem.myIndex = objectArray.push(currentItem) - 1;
+        currentItem.myIndex = lineArray.push(currentItem) - 1;
         currentItem = null;
     }
 }
@@ -126,7 +148,8 @@ function setCurrentItem(id){
         currentItem = new line();
     }
     else if(id == "clear"){
-        objectArray = [];
+        ballArray = [];
+        lineArray = [];
     }
     else {
         currentItem = null;
@@ -135,9 +158,10 @@ function setCurrentItem(id){
 
 const gameWindow = document.getElementById("gameWindow");
 const ctx = gameWindow.getContext('2d');
-ctx.lineWidth = 5;
 gameWindow.addEventListener('mousedown', getMousePosition);
-var objectArray = [];
+ctx.lineWidth = 5;
+var ballArray = [];
+var lineArray = [];
 var currentItem = null;
 const isSpawning = false;
 var frame = window.requestAnimationFrame(gameLoop);
