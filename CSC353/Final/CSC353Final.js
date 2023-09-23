@@ -341,5 +341,4 @@ var enemyArray = [];
 var isPlaying = true;
 var nextSpawn = new Date().getTime();
 window.addEventListener("keydown", keyDown);
-window.addEventListener("keyup", keyUp);
 gameLoop();
