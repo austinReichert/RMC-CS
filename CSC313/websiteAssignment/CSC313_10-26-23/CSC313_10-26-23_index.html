@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        /*
+    Colors:
+        #edeaf0 (bg color)
+        #2d64a3 (links/progress bar)
+        #949696 (progress bar bg)
+        #d5d4d7 (footer)
+        #7a8ff5 (link flicker color)
+
+    Fonts:
+        Helvetica (body & html)
+        Lucida Sans Unicode (headers)
+    
+    Bootstrap Element Present:
+        navbar
+        progress bar
+        wiggle (for assignment)
+        hover (for assignment)
+        jumbotron
+    */
+        body, html {
+            background-color: #edeaf0;
+            font-family: Helvetica;
+            text-align: center;
+            display: block;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container-fluid {
+            max-width: 750px;
+        }
+
+        .jumbotron, footer {
+            background-color: #d5d4d7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 25px;
+        }
+
+        .footnote {
+            transition: background-color 0.5s;
+        }
+
+        .navbar {
+            opacity: 0.70;
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            padding-left: 5px;
+        }
+
+        .progress-container {
+            position: fixed;
+            bottom: 0px;
+            z-index: 1;
+            width: 100%;
+            opacity: 0.6;
+            background: #949696;
+        }
+
+        .progress-bar {
+            height: 15px;
+            background: #2d64a3;
+            width: 0%;
+            opacity: 0.85;
+        }
+
+        h1, h2 {
+            padding: 10px;
+            margin: auto 0;
+            font-weight: bold;
+        }
+
+        a {
+            color: #2d64a3;
+            text-decoration: underline;
+        }
+
+        ul {
+            margin: auto 0;
+            padding-left: 0px;
+        }
+
+        .img-container {
+            position: relative;
+            padding: 5px;
+            margin: auto 0;
+        }
+
+        .img-attribution {
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+        }
+
+        /* HOVER */
+        .hoverableItem::before {
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .hoverableItem:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .hoverableItem::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            inset: 0 0 0 0;
+            background: hsl(200 100% 80%);
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        /* WIGGLE */
+        .pageSubject {
+            transform-origin: 50% 5em;
+            animation: wiggle 3s linear infinite;
+        }
+
+        @keyframes wiggle {
+
+            0%, 7% {
+                transform: rotateZ(0);
+            }
+
+            15% {
+                transform: rotateZ(-15deg);
+            }
+
+            20% {
+                transform: rotateZ(10deg);
+            }
+
+            25% {
+                transform: rotateZ(-10deg);
+            }
+
+            30% {
+                transform: rotateZ(6deg);
+            }
+
+            35% {
+                transform: rotateZ(-4deg);
+            }
+
+            40%, 100% {
+                transform: rotateZ(0);
+            }
+        }
+    </style>
+    <title>Object Oriented Programming</title>
+    <link rel="icon" type="image/x-icon" href="OOPFavicon.png">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <ul class="nav navbar-nav">
+            <li><img src="houseIcon.png" alt="homeIcon" title=""></li>
+            <li class="navbar-brand">Object Oriented Programming</li>
+            <li class="active"><a class="hoverableItem" href="CSC313_10-26-23_index.html">Home</a></li>
+            <li><a class="hoverableItem" href="CSC313_10-26-23_java.html">Java</a></li>
+            <li><a class="hoverableItem" href="CSC313_10-26-23_cpp.html">C++</a></li>
+        </ul>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="pageSubject">Object Oriented Programming</h1>
+        <p>Simple, widely used programming paradigm.</p>
+    </div>
+    <div class="container-fluid">
+        <h1>
+            What is Object Oriented Programming?
+        </h1>
+        <p>
+            According to techtarget.com object oriented programming is
+            "...a computer programming model that organizes software design around data, or objects, rather than functions and logic.
+            An object can be defined as a data field that has unique attributes and behavior.
+            OOP focuses on the objects that developers want to manipulate rather than the logic required to manipulate them.
+            This approach to programming is well-suited for programs that are large, complex and actively updated or maintained.
+            This includes programs for manufacturing and design, as well as mobile applications;
+            for example, OOP can be used for manufacturing system simulation software." <sup><a href="#fn1" onclick="flickerLinkColor(fn1)">[1]</a></sup>
+            These programs often use classes, methods, objects (obviously) and attributes as building blocks. <sup><a href="#fn1" onclick="flickerLinkColor(fn1)">[1]</a></sup>
+        </p>
+        <h1>
+            How does it work?
+        </h1>
+        <p>
+            The building blocks of object oriented programming allow the creation of simple reusable "blueprints". <sup><a href="#fn2" onclick="flickerLinkColor(fn2)">[2]</a></sup>
+            The picture<sup><a href="#fn3" onclick="flickerLinkColor(fn3)">[3]</a></sup> below is an example of this concept.
+        <div class="img-container">
+            <img src="pikachuObject.png" style="width:100%;">
+            <a href="#fn3" class="img-attribution" onclick="flickerLinkColor(fn3)">[3]</a>
+        </div>
+        Within this example we can tell a few things about this "Object".
+        The Class of Pikachu is Pokemon and Pikachu is an object themself.
+        Pikachu has 3 attributes and 3 methods.
+        </p>
+        <h1>
+            Who uses it?
+        </h1>
+        <p>
+            As explained on educative.io,
+            "Object-oriented programming (OOP) is a fundamental programming paradigm used by nearly every developer..."<sup><a href="#fn2" onclick="flickerLinkColor(fn2)">[2]</a></sup>.
+            A few of the contributing factors to its wide use is its flexibility, reusablity<sup><a href="#fn1" onclick="flickerLinkColor(fn1)">[1]</a></sup> and
+            comprehensible structure.
+        </p>
+    </div>
+    <footer>
+        <h2>
+            Footnotes
+        </h2>
+        <ul style="list-style-type:none;">
+            <li> [1] <a class="footnote" id="fn1" href="https://www.techtarget.com/searchapparchitecture/definition/object-oriented-programming-OOP" target=blank_>techtarget.com</a></li>
+            <li> [2] <a class="footnote" id="fn2" href="https://www.educative.io/blog/object-oriented-programming" target=blank_>educative.io</a></li>
+            <li> [3] <a class="footnote" id="fn3" href="https://medium.com/future-vision/intro-to-oop-with-python-39ba63967e45" target=blank_>medium.com</a></li>
+        </ul>
+    </footer>
+    <div class="progress-container progress-striped">
+        <div class="progress-bar" id="bar"></div>
+    </div>
+    <script>
+        window.onscroll = function () { progressBarUpdate() };
+
+        function progressBarUpdate() {
+            document.getElementById("bar").style.width = (((document.documentElement.scrollTop || document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100) + "%";
+        }
+        function flickerLinkColor(id) {
+            color = "#7a8ff5";
+            id.style.backgroundColor = color;
+            setTimeout(function () {
+                id.style.backgroundColor = "";
+                id.style.transition = null;
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

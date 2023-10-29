@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        /*
+    Colors:
+        #edeaf0 (bg color)
+        #2d64a3 (links/progress bar)
+        #949696 (progress bar bg)
+        #d5d4d7 (footer)
+        #7a8ff5 (link flicker color)
+
+    Fonts:
+        Helvetica (body & html)
+        Lucida Sans Unicode (headers)
+    
+    Bootstrap Element Present:
+        navbar
+        progress bar
+        jumbotron
+        coffee (for assignment)
+        wiggle (for assignment)
+        hover (for assignment)
+        well
+        card
+    */
+        body, html {
+            background-color: #edeaf0;
+            font-family: Helvetica;
+            text-align: center;
+            display: block;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container-fluid {
+            max-width: 750px;
+        }
+
+        .jumbotron, footer {
+            background-color: #d5d4d7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 25px;
+        }
+
+        .footnote {
+            transition: background-color 0.5s;
+        }
+
+        .navbar {
+            opacity: 0.70;
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            padding-left: 5px;
+        }
+
+        .progress-container {
+            position: fixed;
+            bottom: 0px;
+            z-index: 1;
+            width: 100%;
+            opacity: 0.6;
+            background: #949696;
+        }
+
+        .progress-bar {
+            height: 15px;
+            background: #2d64a3;
+            width: 0%;
+            opacity: 0.85;
+        }
+
+        h1, h2 {
+            padding: 10px;
+            margin: auto 0;
+            font-weight: bold;
+        }
+
+        a {
+            color: #2d64a3;
+            text-decoration: underline;
+        }
+
+        ul {
+            margin: auto 0;
+            padding-left: 0px;
+        }
+
+        .img-container {
+            position: relative;
+            padding: 5px;
+            margin: auto 0;
+        }
+
+        .img-attribution {
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+        }
+
+        .well {
+            text-align: left;
+        }
+
+        .card {
+            display: inline-block;
+        }
+
+        pre {
+            font-size: 10.5px;
+        }
+
+        /* HOVER */
+        .hoverableItem::before {
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .hoverableItem:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .hoverableItem::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            inset: 0 0 0 0;
+            background: hsl(200 100% 80%);
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        /* WIGGLE */
+        .pageSubject {
+            transform-origin: 50% 5em;
+            animation: wiggle 3s linear infinite;
+
+        }
+
+        @keyframes wiggle {
+
+            0%, 7% {
+                transform: rotateZ(0);
+            }
+
+            15% {
+                transform: rotateZ(-15deg);
+            }
+
+            20% {
+                transform: rotateZ(10deg);
+            }
+
+            25% {
+                transform: rotateZ(-10deg);
+            }
+
+            30% {
+                transform: rotateZ(6deg);
+            }
+
+            35% {
+                transform: rotateZ(-4deg);
+            }
+
+            40%,
+            100% {
+                transform: rotateZ(0);
+            }
+        }
+
+        /* COFFEE */
+        .steam {
+            position: absolute;
+            display: inline-block;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-top: -25px;
+            margin-left: -35px;
+            z-index: 0;
+            opacity: 0;
+        }
+
+        #steam1 {
+            -webkit-animation: steam1 4s ease-out infinite;
+            animation: steam1 4s ease-out infinite;
+        }
+
+        #steam3 {
+            -webkit-animation: steam1 4s ease-out 1s infinite;
+            animation: steam1 4s ease-out 1s infinite;
+        }
+
+        @-webkit-keyframes steam1 {
+            0% {
+                transform: translateY(0) translateX(0) scale (0.25);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(-200px) translateX(-20px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes steam1 {
+            0% {
+                transform: translateY(0) translateX(0) scale (0.25);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(-200px) translateX(-20px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        #steam2 {
+            -webkit-animation: steam2 4s ease-out 0.5s infinite;
+            animation: steam2 4s ease-out 0.5s infinite;
+        }
+
+        #steam4 {
+            -webkit-animation: steam2 4s ease-out 1.5s infinite;
+            animation: steam2 4s ease-out 1.5s infinite;
+        }
+
+        @-webkit-keyframes steam2 {
+            0% {
+                transform: translateY(0) translateX(0) scale (0.25);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(-200px) translateX(20px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes steam2 {
+            0% {
+                transform: translateY(0) translateX(0) scale (0.25);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(-200px) translateX(20px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        #cup {
+            z-index: 1;
+        }
+
+        #cup-body {
+            position: absolute;
+            height: 100px;
+            width: 150px;
+            border-radius: 0 0 150px 150px;
+            background-color: #fff;
+            margin: auto;
+            display: inline-block;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        #cup-shade {
+            position: relative;
+            height: 150px;
+            width: 100px;
+            background-color: #F3F3F3;
+            display: inline-block;
+            margin-left: 50%;
+            margin-top: 5px;
+            transform: rotate(50deg);
+            z-index: 1;
+        }
+
+        #cup-handle {
+            position: relative;
+            height: 50px;
+            width: 40px;
+            border-radius: 0 150px 150px 0;
+            border: 15px solid #F3F3F3;
+            margin-bottom: 40px;
+            margin-left: 140px;
+            display: inline-block;
+            z-index: 0;
+
+        }
+    </style>
+    <title>Object Oriented Programming: Java</title>
+    <link rel="icon" type="image/x-icon" href="OOPFavicon.png">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <ul class="nav navbar-nav">
+            <li><img src="javaIcon.png" alt="homeIcon" title="Picture from: https://www.flaticon.com/free-icon/java_5968282 "></li>
+            <li class="navbar-brand">Object Oriented Programming</li>
+            <li><a class="hoverableItem" href="CSC313_10-26-23_index.html">Home</a></li>
+            <li class="active"><a class="hoverableItem" href="CSC313_10-26-23_java.html">Java</a></li>
+            <li><a class="hoverableItem" href="CSC313_10-26-23_cpp.html">C++</a></li>
+        </ul>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="pageSubject">OOP</h1>
+        <p>A high-level example of object oriented programming.</p>
+    </div>
+    <div id="coffeeContainer">
+        <div class="steam" id="steam1"> </div>
+        <div class="steam" id="steam2"> </div>
+        <div class="steam" id="steam3"> </div>
+        <div class="steam" id="steam4"> </div>
+        <div id="cup">
+            <div id="cup-body">
+                <div id="cup-shade"></div>
+            </div>
+            <div id="cup-handle"></div>
+        </div>
+        <div id="saucer"></div>
+    </div>
+    <div class="container-fluid">
+        <h1>
+            What is Java?
+        </h1>
+        <p>
+            According to java.com, the website for this language, "Java is a programming language and computing platform first released by Sun Microsystems in 1995.
+            ...[Java provides] the reliable platform upon which many services and applications are built.
+            New, innovative products and digital services designed for the future continue to rely on Java, as well,"<sup><a href="#fn1" onclick="flickerLinkColor(fn1)">[1]</a></sup>.
+            Java is also considered a high-level language due to its ease of use, readability, reliability<sup><a href="#fn3" onclick="flickerLinkColor(fn3)">[3]</a></sup> and
+            automatic memory management<sup><a href="#fn4" onclick="flickerLinkColor(fn4)">[4]</a></sup>.
+        </p>
+        <h1>
+            How does Java work?
+        </h1>
+        <p>
+            Java works by compiling source code into byte code, which is then compiled into machine code by the computers Java Virtual Machine.
+            Since most operating system has its own Java Virtual Machine, java is considered to be a "write once, run anywhere" language. <sup><a href="#fn2" onclick="flickerLinkColor(fn2)">[2]</a></sup>
+        </p>
+        <h1>
+
+        </h1>
+        <h1>
+            Example codes
+        </h1>
+        <p>
+            Java, along with many other languages, requires "boilerplate code".
+            Boilerplate code is code that simply allows your program to run.
+        </p>
+        <div class="well">
+            Java Boilerplate code
+            <pre>
+public class ExampleClass {
+    public static void main(String args[]) {
+    // stuff here
+    }
+}
+            </pre>
+        </div>
+        <p>
+            Utilizing this boilerplate code we can add functionality by putting code within the main function.
+        </p>
+        <div class="well">
+            Example code for "Hello world!"
+            <pre>
+public class ExampleClass {
+    public static void main(String args[]) {
+        System.out.println("Hello world!");
+    }
+}
+            </pre>
+            Output:
+            <pre>
+Hello world!
+            </pre>
+        </div>
+        <p>
+            Furthermore, using multiple classes we can create objects with methods and attributes.
+        </p>
+        <div class="well">
+            Example code for an object with methods and attributes.
+            <div class="card">
+                Main.java
+                <pre style="height: 300px;">
+public class Main {
+    public static void main(String[] args) {
+    Dog myDog = new Dog();
+    myDog.setName("Harold");
+    myDog.setAge(5);
+    System.out.println("My dogs name is " + myDog.getName());
+    System.out.println("My dogs age is " + myDog.getAge());
+    }
+}
+                </pre>
+            </div>
+            <div class="card">
+                Dog.java
+                <pre style="height: 300px;">
+public class Dog {
+    public Dog(){}
+    private String name;
+    private int age;
+    public void setName(String newName){
+        this.name = newName;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public void setAge(int newAge){
+        this.age = newAge;
+    }
+    public int getAge(){
+        return this.age;
+    }
+}
+                </pre>
+            </div>
+            <br>
+            Output:
+            <pre>
+My dogs name is Harold.
+My dogs age is 5.
+            </pre>
+        </div>
+    </div>
+    <footer>
+        <h2>
+            Footnotes
+        </h2>
+        <ul style="list-style-type:none;">
+            <li> Page icon: <a href="https://www.flaticon.com/free-icon/java_5968282" target=_blank>flatcon.com</a></li>
+            <li> [1] <a class="footnote" id="fn1" href="https://www.java.com/en/download/help/whatis_java.html" target=blank_>java.com</a></li>
+            <li> [2] <a class="footnote" id="fn2" href="https://medium.com/nerd-for-tech/lets-understand-java-261b2e6bcf2e" target=blank_>medium.com</a></li>
+            <li> [3] <a class="footnote" id="fn3" href="https://www.thoughtco.com/what-is-java-2034117#:~:text=Java%20is%20a%20computer%20programming,and%20written%20easily%20by%20humans." target=_blank>thoughtco.com</a></li>
+            <li> [4] <a class="footnote" id="fn4" href="https://www.scaler.com/topics/memory-management-in-java/" target=_blank>scaler.io</a></li>
+        </ul>
+    </footer>
+    <div class="progress-container progress-striped">
+        <div class="progress-bar" id="bar"></div>
+    </div>
+    <script>
+        window.onscroll = function () { progressBarUpdate() };
+
+        function progressBarUpdate() {
+            document.getElementById("bar").style.width = (((document.documentElement.scrollTop || document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100) + "%";
+        }
+        function flickerLinkColor(id) {
+            color = "#7a8ff5";
+            id.style.backgroundColor = color;
+            setTimeout(function () {
+                id.style.backgroundColor = "";
+                id.style.transition = null;
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

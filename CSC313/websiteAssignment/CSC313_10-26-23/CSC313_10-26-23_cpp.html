@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        /*
+    Colors:
+        #edeaf0 (bg color)
+        #2d64a3 (links/progress bar)
+        #949696 (progress bar bg)
+        #d5d4d7 (footer)
+        #7a8ff5 (link flicker color)
+
+    Fonts:
+        Helvetica (body & html)
+        Lucida Sans Unicode (headers)
+    
+    Bootstrap Element Present:
+        navbar
+        progress bar
+        wiggle (for assignment)
+        hover (for assignment)
+        jumbotron
+        well
+    */
+        body, html {
+            background-color: #edeaf0;
+            font-family: Helvetica;
+            text-align: center;
+            display: block;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container-fluid {
+            max-width: 750px;
+        }
+
+        .jumbotron, footer {
+            background-color: #d5d4d7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 25px;
+        }
+
+        .footnote {
+            transition: background-color 0.5s;
+        }
+
+        .navbar {
+            opacity: 0.70;
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            padding-left: 5px;
+        }
+
+        .progress-container {
+            position: fixed;
+            bottom: 0px;
+            z-index: 1;
+            width: 100%;
+            opacity: 0.6;
+            background: #949696;
+        }
+
+        .progress-bar {
+            height: 15px;
+            background: #2d64a3;
+            width: 0%;
+            opacity: 0.85;
+        }
+
+        h1, h2 {
+            padding: 10px;
+            margin: auto 0;
+            font-weight: bold;
+        }
+
+        a {
+            color: #2d64a3;
+            text-decoration: underline;
+        }
+
+        ul {
+            margin: auto 0;
+            padding-left: 0px;
+        }
+
+        .img-container {
+            position: relative;
+            padding: 5px;
+            margin: auto 0;
+        }
+
+        .img-attribution {
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+        }
+
+        .well {
+            text-align: left;
+        }
+
+        pre {
+            font-size: 12px;
+        }
+
+        /* HOVER */
+        .hoverableItem::before {
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .hoverableItem:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .hoverableItem::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            inset: 0 0 0 0;
+            background: hsl(200 100% 80%);
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        /* WIGGLE */
+        .pageSubject {
+            transform-origin: 50% 5em;
+            animation: wiggle 3s linear infinite;
+        }
+
+        @keyframes wiggle {
+
+            0%, 7% {
+                transform: rotateZ(0);
+            }
+
+            15% {
+                transform: rotateZ(-15deg);
+            }
+
+            20% {
+                transform: rotateZ(10deg);
+            }
+
+            25% {
+                transform: rotateZ(-10deg);
+            }
+
+            30% {
+                transform: rotateZ(6deg);
+            }
+
+            35% {
+                transform: rotateZ(-4deg);
+            }
+
+            40%, 100% {
+                transform: rotateZ(0);
+            }
+        }
+    </style>
+    <title>Object Oriented Programming: C++</title>
+    <link rel="icon" type="image/x-icon" href="OOPFavicon.png">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <ul class="nav navbar-nav">
+            <li><img src="cppIcon.png" alt="homeIcon" title="Picture from: https://www.flaticon.com/free-icon/c_6132222"></li>
+            <li class="navbar-brand">Object Oriented Programming</li>
+            <li><a class="hoverableItem" href="CSC313_10-26-23_index.html">Home</a></li>
+            <li><a class="hoverableItem" href="CSC313_10-26-23_java.html">Java</a></li>
+            <li class="active"><a class="hoverableItem" href="CSC313_10-26-23_cpp.html">C++</a></li>
+        </ul>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="pageSubject">C++</h1>
+        <p>A low-level language that operates with Object Oriented Programming.</p>
+    </div>
+    <div class="container-fluid">
+        <h1>
+            What is C++?
+        </h1>
+        <p>
+            "C++ is a general-purpose, free-form programming language created by Bjarne Stroustrup ..., as an enhancement to the C language.
+            Since it is an extension of C, it is also known as C with classes. It was specifically designed with an orientation towards large systems and resource-constrained software...
+            The biggest advantage of C++ is that it is super scalable and allows developers to have a lot of control over how their applications use up resources."
+            <sup><a href="#fn1" onclick="flickerLinkColor(fn1)">[1]</a></sup>
+            C++ is considered a low-level language due to the lack of automatic memory management.<sup><a href="#fn2" onclick="flickerLinkColor(fn2)">[2]</a></sup>
+        </p>
+        <h1>
+            How does C++ work?
+        </h1>
+        <p>
+            C++, simply put, works by using a compilers to take the code and convert it into an object file.
+            From there the compiler passes the processed object file to a linker and produces an executable file.
+            <sup><a href="#fn3" onclick="flickerLinkColor(fn3)">[3]</a></sup>
+        </p>
+        <h1>
+            Example codes
+        </h1>
+        <p>
+            C++, along with many other languages, requires "boilerplate code".
+            Boilerplate code is code that simply allows your program to run.
+        </p>
+        <div class="well">
+            C++ Boilerplate
+            <pre>
+#include &lt;iostream&gt;
+
+int main() {
+    // stuff here
+    return 0;
+}
+            </pre>
+        </div>
+        <p>
+            Utilizing this boilerplate code we can add functionality by putting code within the main function.
+        </p>
+        <div class="well">
+            Example code for "Hello world!"
+            <pre>
+#include &lt;iostream&gt;
+
+int main() {
+    std::cout << "Hello world!";
+    return 0;
+}
+                   </pre>
+                    Output:
+                    <pre>
+Hello world!
+                    </pre>
+        </div>
+        <p>
+            Furthermore, using multiple classes we can create objects with methods and attributes.
+        </p>
+        <div class="well">
+            Example code for an object with methods and attributes.
+            <pre>
+#include &lt;iostream&gt;
+
+class Dog {
+    public:
+        void setName(std::string newName){
+            this->name = newName;
+        }
+        std::string getName(){
+            return this->name;
+        }
+        void setAge(int newAge){
+            this->age = newAge;
+        }
+        int getAge(){
+            return this->age;
+        }
+    private:
+        std::string name;
+        int age;
+};
+
+int main() {
+    Dog myDog;
+    myDog.setName("Harold");
+    myDog.setAge(5);
+    std::cout << "My dogs name is " << myDog.getName() << ".\n";
+    std::cout << "My dogs age is " << myDog.getAge() << ".\n";
+    return 0;
+}
+                   </pre>
+                    Output:
+                    <pre>
+My dogs name is Harold.
+My dogs age is 5.
+                    </pre>
+        </div>
+    </div>
+    <footer>
+        <h2>
+            Footnotes
+        </h2>
+        <ul style="list-style-type:none;">
+            <li> Page icon: <a href="https://www.flaticon.com/free-icon/c_6132222" target=_blank>flatcon.com</a></li>
+            <li> [1] <a class="footnote" id="fn1" href="https://www.simplilearn.com/tutorials/cpp-tutorial/top-uses-of-c-plus-plus-programming#overview_of_c" target=_blank>simplilearn.com</a></li>
+            <li> [2] <a class="footnote" id="fn2" href="https://www.coursereport.com/blog/a-guide-to-low-level-programming-for-beginners" target=_blank>coursereport.com</a></li>
+            <li> [3] <a class="footnote" id="fn3" href="https://zight.com/blog/how-c-plus-plus-works/" target=_blank>zight.com</a></li>
+        </ul>
+    </footer>
+    <div class="progress-container progress-striped">
+        <div class="progress-bar" id="bar"></div>
+    </div>
+    <script>
+        window.onscroll = function () { progressBarUpdate() };
+
+        function progressBarUpdate() {
+            document.getElementById("bar").style.width = (((document.documentElement.scrollTop || document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100) + "%";
+        }
+        function flickerLinkColor(id) {
+            color = "#7a8ff5";
+            id.style.backgroundColor = color;
+            setTimeout(function () {
+                id.style.backgroundColor = "";
+                id.style.transition = null;
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
